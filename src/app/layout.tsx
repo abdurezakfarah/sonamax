@@ -1,4 +1,3 @@
-import {Header} from "@/components/header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utilities/cn";
@@ -6,7 +5,6 @@ import type { Metadata, Viewport } from "next";
 import NextTopLoader from "nextjs-toploader";
 import "../styles/globals.css";
 import { oswald, raleway } from "./ui/fonts";
-import {Footer} from "@/components/footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -110,10 +108,7 @@ export default function RootLayout({
           zIndex={1600}
           showAtBottom={false}
         />
-        <Header />
         {children}
-        <Footer />
-        <TailwindIndicator />
       </body>
     </html>
   );
