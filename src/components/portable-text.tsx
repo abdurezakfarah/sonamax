@@ -34,17 +34,6 @@ const portableTextComponents: PortableTextComponents = {
       />
     ),
 
-    // customCode: ({ value: { code } }) => {
-    //   return (
-    //     <>
-    //       <CodeInput
-    //         code={code.code}
-    //         language={code.language}
-    //         filename={code.filename}
-    //       /> font-title
-    //     </>
-    //   );
-    // },
 
     callout: ({ value }) => {
       return (
