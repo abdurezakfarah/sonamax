@@ -33,6 +33,7 @@
     "react-moment": "^1.1.3",
     "reading-time": "^1.5.0",
     "sanity-plugin-icon-picker": "^3.3.0",
+    "sharp": "^0.33.4",
     "slugify": "^1.6.6",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
