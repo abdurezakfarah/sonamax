@@ -14,10 +14,10 @@ export default function Page() {
   return (
     <main>
       <PageHeader title="About Us" />
-      <About />
+      {/* <About />
       <Services />
       <Projects />
-      <Pricing />
+      <Pricing /> */}
     </main>
   );
 }
