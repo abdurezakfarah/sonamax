@@ -18,7 +18,7 @@ interface Project {
   _id: string;
   image: string | null;
   title: string;
-  category: null;
+  category: string;
   slug: string;
   date: string;
 }

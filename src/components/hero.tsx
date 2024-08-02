@@ -23,10 +23,10 @@ interface HeroProps {
     name: string;
     url: string;
     icon: {
-      name: string;
       provider: string;
+      name: string;
     };
-  }>;
+  }> | null;
 }
 
 export function Hero({
@@ -88,7 +88,7 @@ export function Hero({
             Follow us
           </h4>
           <ul className="inline-block">
-            {socialLinks.map((link) => (
+            {socialLinks?.map((link) => (
               <li
                 key={link._key}
                 className="mr-2.5 inline-block [&:n0t:last-child]:mr-0"
