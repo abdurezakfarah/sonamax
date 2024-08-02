@@ -800,8 +800,8 @@ export type FooterQueryResult = {
     name: string;
     url: string;
     icon: {
-      provider: string | null;
-      name: string | null;
+      provider: string;
+      name: string;
     };
   }>;
   footer: Array<{
