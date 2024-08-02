@@ -46,6 +46,10 @@ const config = {
           light: "hsl(var(--copy-light))",
           lighter: "hsl(var(--copy-lighter))",
         },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          content: "hsl(var(--info-content))",
+        },
         success: {
           DEFAULT: "hsl(var(--success))",
           content: "hsl(var(--success-content))",

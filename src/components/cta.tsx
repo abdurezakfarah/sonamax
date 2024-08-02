@@ -1,5 +1,3 @@
-"use client";
-
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
@@ -7,16 +5,17 @@ import * as React from "react";
 import { cn } from "@/lib/utilities/cn";
 
 const callToActionVariants = cva(
-  "relative z-0 w-fit inline-flex items-center justify-center space-x-2 whitespace-nowrap rounded-md font-title text-base font-semibold uppercase leading-normal ring-offset-background transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:origin-top-right before:scale-x-0 before:rounded-[inherit] before:transition-transform before:duration-500 before:ease-custom before:content-[''] hover:before:origin-bottom-left hover:before:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative z-0 inline-flex w-fit items-center justify-center space-x-2 whitespace-nowrap rounded-md font-title text-base font-semibold uppercase leading-normal ring-offset-background transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:origin-top-right before:scale-x-0 before:rounded-[inherit] before:transition-transform before:duration-500 before:ease-custom before:content-[''] hover:before:origin-bottom-left hover:before:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         default: "bg-primary text-primary-content before:bg-black",
         secondary: "bg-white text-black before:bg-black hover:text-white",
-        outline: "bg-transparent border text-copy hover:text-white before:bg-black",
+        outline:
+          "border bg-transparent text-copy before:bg-black hover:text-white",
       },
       size: {
-        default: "h-11 px-7 py-2",
+        default: "h-12 px-7 py-2",
       },
     },
     defaultVariants: {

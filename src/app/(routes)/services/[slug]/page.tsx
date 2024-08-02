@@ -1,57 +1,71 @@
 import { Icons } from "@/components/icons";
 import { PageHeader } from "@/components/page-header";
-import Image from "next/image";
 import Link from "next/link";
 
-import serviceDetailsOne from "@/assets/images/resources/service-details-1.jpg";
-import serviceDetailsTwo from "@/assets/images/resources/service-details-2.jpg";
-import serviceDetailImage from "@/assets/images/resources/service-details.jpg";
+import { PortableText } from "@/components/portable-text";
+import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utilities/cn";
+import { client } from "@/sanity/lib/client";
+import { servicePageQuery } from "@/sanity/lib/queries";
+import { ServicePageQueryResult } from "@/sanity/sanity.types";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-const services = [
-  {
-    icon: Icons.handshake,
-    title: "Digital Marketing",
-    description: "Organically grow the the holistic world view way into.",
-    slug: "digital-marketing",
-  },
-  {
-    icon: Icons.handshake,
-    title: "Branding Design",
-    description: "Organically grow the the holistic world view way into.",
-    slug: "branding-design",
-  },
-  {
-    icon: Icons.handshake,
-    title: "Web Development",
-    description: "Organically grow the the holistic world view way into.",
-    slug: "web-development",
-  },
-  {
-    icon: Icons.handshake,
-    title: "Apps Development",
-    description: "Organically grow the the holistic world view way into.",
-    slug: "apps-development",
-  },
-];
-
-interface PageProps {
+interface ServicePageProps {
   params: {
     slug: string;
   };
 }
 
-export default function Page({ params }: PageProps) {
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
   const { slug } = params;
+  const service = await client.fetch<ServicePageQueryResult>(servicePageQuery, {
+    slug,
+  });
+
+  if (!service) {
+    notFound();
+  }
+
+  return {
+    title: service.title,
+    description: service.description,
+    openGraph: {
+      type: "article",
+      locale: "en_US",
+      url: `${siteConfig.url}/service/${slug}`,
+      title: service.title,
+      description: service.description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.title,
+      description: service.description,
+    },
+  };
+}
+
+export default async function Page({ params }: ServicePageProps) {
+  const { slug } = params;
+  const service = await client.fetch<ServicePageQueryResult>(servicePageQuery, {
+    slug,
+  });
+
+  if (!service) {
+    return null;
+  }
+
   return (
     <main>
       <PageHeader title="Service Details" />
       <div className="container relative flex gap-7 py-8 max-md:flex-col-reverse md:gap-14 lg:px-16">
         <div className="max-w-[280px] basis-1/3 items-stretch space-y-5">
           <nav className="flex flex-col gap-y-4">
-            {services.map((service, index) => (
+            {service.services.map((service) => (
               <Link
-                key={service.title + index + service.slug}
+                key={service._id}
                 href={`/services/${service.slug}`}
                 className={cn(
                   "relative flex items-center justify-between gap-4 rounded-[0.5rem] bg-neutral-300 px-3 py-2 font-title text-sm transition-transform duration-300 hover:scale-105",
@@ -60,9 +74,7 @@ export default function Page({ params }: PageProps) {
                   },
                 )}
               >
-                <span>
-                  {service.title} - {service.slug}
-                </span>
+                <span>{service.title}</span>
                 <div
                   className={cn("rounded-md px-3 py-1", {
                     "bg-primary text-primary-content": service.slug === slug,
@@ -101,50 +113,7 @@ export default function Page({ params }: PageProps) {
           </Link>
         </div>
         <article className="flex-1">
-          <div className="richtext">
-            <Image src={serviceDetailImage} alt="people" />
-            <h2>Service overview</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-              esse fugit assumenda libero adipisci in quod earum sit? Ducimus
-              similique consequatur voluptas, quos eius tempora quam dolorem
-              modi quo ipsam.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Distinctio accusamus recusandae obcaecati suscipit? Accusamus
-              quasi nemo consequatur quod nisi odio adipisci quis molestias
-              omnis!
-            </p>
-            <h2>Service center</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Voluptates ex, nemo delectus nihil quisquam libero vel praesentium
-              consectetur harum ea, distinctio sed debitis odio dignissimos
-              adipisci, unde omnis at. Placeat!
-            </p>
-            <p>
-              At, nulla nam id similique optio ad est reiciendis esse, molestias
-              debitis odio aspernatur aperiam, inventore facilis saepe qui autem
-              tenetur. Et sit blanditiis vel ut sed tempora non odit?
-            </p>
-            <div className="mt-7 flex gap-5 max-md:flex-col">
-              <div className="flex-1">
-                <Image src={serviceDetailsOne} alt="sercive details" />
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Temporibus blanditiis sed esse quis vero?
-                </p>
-              </div>
-              <div className="flex-1">
-                <Image src={serviceDetailsTwo} alt="sercive details" />
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Temporibus blanditiis sed esse quis vero?
-                </p>
-              </div>
-            </div>
-          </div>
+          <PortableText value={service.overview} />
         </article>
       </div>
     </main>

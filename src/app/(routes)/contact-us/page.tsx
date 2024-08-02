@@ -20,11 +20,11 @@ export default function Page() {
         </div>
         <div className="flex-1">
           <h2 className="mb-5 text-balance font-title text-2xl font-bold uppercase sm:text-2xl md:text-3xl lg:text-4xl">
-            We'd Love to Hear from You!
+            We&apos;d Love to Hear from You!
           </h2>
           <p>
             If you have any questions, feedback, or just want to say hello, feel
-            free to reach out. We're here to help and always happy to connect!
+            free to reach out. We&apos;re here to help and always happy to connect!
           </p>
           <div className="mt-7 space-y-5">
             <Card

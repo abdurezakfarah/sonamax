@@ -24,6 +24,8 @@
     --success: 120 95% 57%;
     --warning: 60 95% 57%;
     --error: 0 95% 57%;
+    --info: 200 100% 50%;
+    --info-content: 210 20% 98%;
     --success-content: 120 94% 7%;
     --warning-content: 60 94% 7%;
     --error-content: 0 0% 100%;

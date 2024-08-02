@@ -59,15 +59,15 @@ export function Header() {
         </Link>
         <Navbar items={mainNav} />
         <CallToAction className="max-md:hidden">
-          <Link href="/contact-us">Let's talk</Link>
+          <Link href="/contact-us">Let&apos;s talk</Link>
         </CallToAction>
         <Button
           onClick={handleMenuToggle}
-          className="rounded hover:bg-black/60 md:hidden"
+          className="rounded hover:bg-black md:hidden"
           size="icon"
           variant="ghost"
         >
-          {isMenuOpen ? <Icons.close /> : <Icons.menu />}
+          {isMenuOpen ? <Icons.cross /> : <Icons.menu />}
         </Button>
         <AnimatePresence mode="sync">
           {isMenuOpen && (

@@ -1,10 +1,6 @@
-"use client";
-
-import { siteConfig } from "@/config/site";
 import { usePreventScroll } from "@/hooks/use-prevent-scroll";
 import { cn } from "@/lib/utilities/cn";
 import { NavItem } from "@/types";
-import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { Icons } from "./icons";
 
@@ -18,16 +14,10 @@ export function Menubar({ items, handleMenuToggle }: MenubarProps) {
   return (
     <div
       className={cn(
-        "backdrop-sm fixed inset-0 top-16 z-20 h-[calc(100vh-4rem)] transition-colors duration-300 md:hidden",
+        "bg-black fixed inset-0 top-16 z-20 h-[calc(100vh-4rem)] md:hidden",
       )}
     >
-      <motion.div
-        variants={MANUBAR_VARIANTS}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        className="relative z-20 ml-auto flex w-full flex-col gap-6 overflow-hidden bg-black px-4 py-2 text-primary-content shadow-md"
-      >
+      <div className="relative z-20 ml-auto flex w-full flex-col gap-6 overflow-hidde px-4 py-2 text-white">
         <nav className="mt-10 space-y-2">
           {items.map((item, index) => (
             <Link
@@ -35,16 +25,17 @@ export function Menubar({ items, handleMenuToggle }: MenubarProps) {
               href={item.disabled ? "#" : item.href}
               onClick={handleMenuToggle}
               className={cn(
-                "flex w-full items-center rounded-md p-2 text-2xl font-medium hover:underline",
+                "flex w-full items-center justify-between rounded-md p-2 text-2xl font-medium hover:underline",
                 item.disabled && "cursor-not-allowed opacity-60",
               )}
             >
               {item.title}
+              <Icons.arrowRight />
             </Link>
           ))}
         </nav>
 
-        <ul className="mt-10 space-y-5">
+        {/* <ul className="mt-10 space-y-5">
           <li>
             <Link
               className="flex items-center gap-5"
@@ -81,16 +72,8 @@ export function Menubar({ items, handleMenuToggle }: MenubarProps) {
               </div>
             </Link>
           </li>
-        </ul>
-      </motion.div>
+        </ul> */}
+      </div>
     </div>
   );
 }
-const MANUBAR_VARIANTS: Variants = {
-  hidden: {
-    height: 0,
-  },
-  visible: {
-    height: "100%",
-  },
-};

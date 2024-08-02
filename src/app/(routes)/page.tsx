@@ -13,23 +13,38 @@ import { Process } from "@/components/process";
 import { Projects } from "@/components/projects";
 import { Services } from "@/components/services";
 import { Testimonials } from "@/components/testimonials";
+import { client } from "@/sanity/lib/client";
+import { homePageQuery } from "@/sanity/lib/queries";
+import { HomePageQueryResult } from "@/sanity/sanity.types";
 
-export default function Home() {
+export default async function Home() {
+  const homePageData = await client.fetch<HomePageQueryResult>(
+    homePageQuery,
+    {},
+    {
+      cache: "no-store",
+    },
+  );
+
+  if (!homePageData) {
+    throw Error("Home page data is null.");
+  }
+
   return (
     <main>
-      <Hero />
-      <Services />
-      <About />
-      <Process />
-      <Projects />
-      <Testimonials />
-      <ChooseUs />
-      <Pricing />
-      <ContactBannerOne />
-      <Contact />
-      <Blog />
-      <FAQ />
-      <ContactBannerTwo />
+      <Hero {...homePageData.hero} />
+      <Services {...homePageData.services} />
+      <About {...homePageData.about} />
+      <Process {...homePageData.workingProcess} />
+      <Projects {...homePageData.projects} />
+      <Testimonials {...homePageData.testimonials} />
+      <ChooseUs {...homePageData.chooseUs} />
+      <Pricing {...homePageData.pricing} />
+      <ContactBannerOne {...homePageData.contactBannerOne} />
+      <Contact {...homePageData.contact} />
+      <Blog {...homePageData.blog} />
+      <FAQ {...homePageData.faq} />
+      <ContactBannerTwo {...homePageData.contactBannerTwo} />
     </main>
   );
 }

@@ -1,18 +1,25 @@
 "use client";
+
 import { siteConfig } from "@/config/site";
 import {
   newsletterFormSchema,
   NewsletterFormSchema,
 } from "@/lib/validations/newsletter-form";
+import { FooterQueryResult } from "@/sanity/sanity.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { preview } from "sanity-plugin-icon-picker";
 import { Icon, Icons } from "./icons";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
 
-export function Footer() {
+export function Footer({ data: footerData }: { data: FooterQueryResult }) {
+  if (!footerData) {
+    throw Error("Footer: no data.");
+  }
+
   return (
     <footer className="container space-y-16 bg-[#202020] pt-14 text-white">
       <div className="grid gap-14 sm:grid-cols-2 lg:grid-cols-4">
@@ -38,71 +45,40 @@ export function Footer() {
           </div>
           <hr className="my-6 h-px bg-[#797979]" aria-hidden={true} />
           <div className="flex gap-3">
-            <div className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary">
-              <Icons.facebook className="size-5 text-[#797979] transition-colors duration-300 group-hover:text-primary-content" />
-            </div>
-            <div className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary">
-              <Icons.instagram className="size-5 text-[#797979] transition-colors duration-300 group-hover:text-primary-content" />
-            </div>
-            <div className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary">
-              <Icons.whatsapp className="size-5 text-[#797979] transition-colors duration-300 group-hover:text-primary-content" />
-            </div>
-            <div className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary">
-              <Icons.mail className="size-5 text-[#797979] transition-colors duration-300 group-hover:text-primary-content" />
-            </div>
+            {footerData.socialLinks.map((socialLink) => (
+              <Link
+                href={socialLink.url}
+                key={socialLink._key}
+                className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary [&>svg]:size-5 [&>svg]:text-[#79797979] [&>svg]:transition-colors [&>svg]:duration-300 hover:[&>svg]:text-white"
+              >
+                {preview(socialLink.icon)}
+                <span className="sr-only">Follow us on:{socialLink.name}</span>
+              </Link>
+            ))}
           </div>
         </section>
-        <section>
-          <div className="relative flex items-stretch">
-            <div className="w-1 bg-primary" aria-hidden />
-            <h2 className="text-balance px-3 font-title font-semibold uppercase leading-snug text-white sm:text-lg md:text-xl lg:text-2xl">
-              Our Services
-            </h2>
-          </div>
-          <ul className="mt-7 space-y-4">
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Digital marketing</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Branding design</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Product Design</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Web development</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">App Development</Link>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <div className="relative flex items-stretch">
-            <div className="w-1 bg-primary" aria-hidden />
-            <h2 className="text-balance px-3 font-title font-semibold uppercase leading-snug text-white sm:text-lg md:text-xl lg:text-2xl">
-              Our Services
-            </h2>
-          </div>
-          <ul className="mt-7 space-y-4">
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Digital marketing</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Branding design</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Product Design</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">Web development</Link>
-            </li>
-            <li className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">
-              <Link href="#">App Development</Link>
-            </li>
-          </ul>
-        </section>
-        <section>
+        {footerData.footer.map((section) => (
+          <section key={section._key}>
+            <div className="relative flex items-stretch">
+              <div className="w-1 bg-primary" aria-hidden />
+              <h2 className="text-balance px-3 font-title font-semibold uppercase leading-snug text-white sm:text-lg md:text-xl lg:text-2xl">
+                {section.title}
+              </h2>
+            </div>
+            <ul className="mt-7 space-y-4">
+              {section.links.map((link) => (
+                <li
+                  key={link._key}
+                  className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                >
+                  <Link href={link.url}>{link.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+
+        <section className="lg:-col-start-2 lg:row-span-full">
           <div className="relative flex items-stretch">
             <div className="w-1 bg-primary" aria-hidden />
             <h2 className="text-balance px-3 font-title font-semibold uppercase leading-snug text-white sm:text-lg md:text-xl lg:text-2xl">
@@ -116,9 +92,7 @@ export function Footer() {
         </section>
       </div>
       <div className="-mx-8 w-[calc(100%+4rem)] bg-[#282828] py-5">
-        <p className="text-center text-sm text-white/60">
-          © 2024 = Sonamax
-        </p>
+        <p className="text-center text-sm text-white/60">© 2024 = Sonamax</p>
       </div>
     </footer>
   );

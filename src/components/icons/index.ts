@@ -1,3 +1,4 @@
+import { MdPrecisionManufacturing } from "react-icons/md";
 // import {
 //   BadgeAlert,
 //   Briefcase,
@@ -27,18 +28,34 @@
 import {
   ArrowRight,
   ArrowUpRight,
+  BadgeAlert,
+  Banknote,
   Check,
   ChevronRight,
+  CircleCheck,
+  CircleHelp,
   Clock,
+  Code,
+  Cog,
   FileDown,
+  FolderCheck,
   Globe,
   Handshake,
+  Highlighter,
+  House,
+  Info,
   Mail,
   MapPin,
   Menu,
   Phone,
   Play,
   Quote,
+  Section,
+  Skull,
+  StickyNote,
+  Tags,
+  TriangleAlert,
+  User,
   X,
 } from "lucide-react";
 import {
@@ -49,7 +66,7 @@ import {
 } from "react-icons/io5";
 import { Logo } from "./logo";
 
-import { MdCategory } from "react-icons/md";
+import { MdCategory, MdRssFeed, MdSupportAgent } from "react-icons/md";
 
 export type Icon = (typeof Icons)[keyof typeof Icons];
 
@@ -62,7 +79,8 @@ export const Icons = {
   mail: Mail,
   arrowUpRight: ArrowUpRight,
   play: Play,
-  close: X,
+  cross: X,
+  chech: Check,
   menu: Menu,
   phone: Phone,
   clock: Clock,
@@ -74,5 +92,23 @@ export const Icons = {
   chevronRight: ChevronRight,
   fileDown: FileDown,
   category: MdCategory,
-  arrowRight: ArrowRight
+  arrowRight: ArrowRight,
+  code: Code,
+  badgeAlert: BadgeAlert,
+  highlighter: Highlighter,
+  stickyNote: StickyNote,
+  house: House,
+  supportAgent: MdSupportAgent,
+  folderCheck: FolderCheck,
+  banknote: Banknote,
+  rssFeed: MdRssFeed,
+  tags: Tags,
+  user: User,
+  circleHelp: CircleHelp,
+  cog: Cog,
+  section: Section,
+  info: Info, 
+  circleCheck: CircleCheck,
+  triangleAlert: TriangleAlert,
+  skull: Skull
 };
