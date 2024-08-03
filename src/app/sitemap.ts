@@ -5,7 +5,7 @@ import { SitemapQueryResult } from "@/sanity/sanity.types";
 import type { MetadataRoute } from "next";
 
 const mainNavigations: MetadataRoute.Sitemap = mainNav.map((nav) => ({
-  url: `${siteConfig.url}/${nav.href}`,
+  url: `${siteConfig.url}${nav.href}`,
   lastModified: new Date(),
 }));
 
