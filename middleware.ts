@@ -1,5 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import crypto from "crypto";
+
 // csp and it's matcher is generated from nextjs site 
 
 export async function middleware(request: NextRequest) {
