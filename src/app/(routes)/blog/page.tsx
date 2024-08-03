@@ -48,10 +48,10 @@ function Post({ title, slug, excerpt, image, plainText, publishedAt }: Post) {
   return (
     <article className="relative bg-neutral-200">
       {image && <Image src={image} alt="post image" width={403} height={802} />}
-      <div className="space-y-4 p-5">
-        <h3 className="line-clamp-2 font-title">{title}</h3>
-        <p className="line-clamp-4 text-copy-light">{excerpt}</p>
-        <div className="flex gap-2 text-xs">
+      <div className="space-y-3.5 p-5">
+        <h3 className="line-clamp-2 font-title text-lg font-medium">{title}</h3>
+        <p className="line-clamp-4 text-copy-light leading-tight">{excerpt}</p>
+        <div className="flex gap-2 text-sm text-lighter">
           <Moment date={publishedAt} />
           <span>&#x2022;</span>
           <span>{readingTime(plainText).text}</span>

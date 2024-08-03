@@ -73,9 +73,9 @@ function Post({ title, slug, image, plainText, publishedAt }: Post) {
     <article className="relative bg-neutral-200">
       {image && <Image src={image} alt="post image" width={403} height={802} />}
       <div className="p-5">
-        <h3 className="line-clamp-2 font-title">{title}</h3>
+        <h3 className="line-clamp-2 font-title text-lg">{title}</h3>
         <hr className="my-4 h-px w-full bg-primary" aria-hidden={true} />
-        <div className="flex gap-2 text-xs">
+        <div className="flex gap-2 text-sm text-copy-light leading-tight">
           <Moment date={publishedAt} />
           <span>&#x2022;</span>
           <span>{readingTime(plainText).text}</span>
