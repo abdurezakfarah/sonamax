@@ -67,11 +67,13 @@ import {
 import { Logo } from "./logo";
 
 import { MdCategory, MdRssFeed, MdSupportAgent } from "react-icons/md";
+import { BlackLogo } from "./black-logo";
 
 export type Icon = (typeof Icons)[keyof typeof Icons];
 
 export const Icons = {
   logo: Logo,
+  blackLogo: BlackLogo,
   facebook: IoLogoFacebook,
   instagram: IoLogoInstagram,
   twitter: IoLogoTwitter,
