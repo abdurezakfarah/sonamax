@@ -344,7 +344,7 @@ export const sitemapQuery = groq`
     "slug": slug.current,
     _createdAt
   },
-  "projects": *[_type == "post"]{
+  "projects": *[_type == "project"]{
     "slug": slug.current,
     _createdAt
   }
