@@ -15,11 +15,13 @@ import { editor } from "./objects/editor";
 import { overviewCard } from "./objects/overview-card";
 import { richText } from "./objects/richtext";
 import { stats } from "./objects/stats";
+import { page } from "./documents/page";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     configuration,
     home,
+    page,
     post,
     author,
     category,
@@ -46,7 +48,7 @@ export const singletonActions = new Set([
 export const singletonTypes = new Set(["configuration", "home"]);
 
 // SCHEMA TYPES TO EXCLUDE FROM LEFT SIDEBAR
-export const excludedListTypes = new Set(["configuration", "home"]);
+export const excludedListTypes = new Set(["configuration", "home", "page"]);
 
 //TODO: below are some docs are no longer in use & need to be deleted:
 // 1) services

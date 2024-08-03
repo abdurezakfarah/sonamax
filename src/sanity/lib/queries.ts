@@ -1,6 +1,23 @@
 
 import { groq } from "next-sanity";
 
+
+export const pageQuery = groq`
+  *[_type == "page" && slug.current == $slug][0]{
+    _id,
+    title,
+    "slug": slug.current,
+    "ogImage": ogImage.asset->url,
+    "createdAt": _createdAt,
+    description,
+    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
+    body,
+    "plainText": pt::text(body),
+    "keywords": string::split(keywords, ","),
+    _updatedAt,
+  }
+  `;
+
 export const homePageQuery = groq`
   *[_type == "home"][0]{
     hero {

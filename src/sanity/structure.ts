@@ -6,12 +6,6 @@ export const structure = (S: StructureBuilder) =>
   S.list()
     .title("Content")
     .items([
-      S.listItem()
-        .title("Configuration")
-        .icon(Icons.cog)
-        .child(
-          S.document().schemaType("configuration").documentId("configuration"),
-        ),
       /* PAGES */
       S.listItem()
         .title("Pages")
@@ -25,6 +19,10 @@ export const structure = (S: StructureBuilder) =>
                 .title("Home")
                 .icon(Icons.house)
                 .child(S.document().schemaType("home").documentId("home")),
+              /* OTHERS */
+              S.documentTypeListItem("page")
+                .icon(Icons.stickyNote)
+                .title("Other Pages"),
             ]),
         ),
 
@@ -32,4 +30,14 @@ export const structure = (S: StructureBuilder) =>
       ...S.documentTypeListItems().filter(
         (listItem) => !excludedListTypes.has(listItem.getId()!),
       ),
+
+      S.divider(),
+
+      /* CONFIGURATION */
+      S.listItem()
+        .title("Configuration")
+        .icon(Icons.cog)
+        .child(
+          S.document().schemaType("configuration").documentId("configuration"),
+        ),
     ]);

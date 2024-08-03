@@ -377,6 +377,32 @@ export type Category = {
   slug: Slug;
 };
 
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  description: string;
+  keywords?: string;
+  ogImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    caption?: string;
+    alt?: string;
+    _type: "customImage";
+  };
+  body: Editor;
+};
+
 export type Slug = {
   _type: "slug";
   current: string;
@@ -593,6 +619,7 @@ export type AllSanitySchemaTypes =
   | Post
   | Author
   | Category
+  | Page
   | Slug
   | Home
   | CustomImage
@@ -601,6 +628,21 @@ export type AllSanitySchemaTypes =
   | Icon;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
+// Variable: pageQuery
+// Query:   *[_type == "page" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    "ogImage": ogImage.asset->url,    "createdAt": _createdAt,    description,    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],    body,    "plainText": pt::text(body),    "keywords": string::split(keywords, ","),    _updatedAt,  }  
+export type PageQueryResult = {
+  _id: string;
+  title: string;
+  slug: string;
+  ogImage: string | null;
+  createdAt: string;
+  description: string;
+  headings: Array<never>;
+  body: Editor;
+  plainText: string;
+  keywords: Array<string> | null;
+  _updatedAt: string;
+} | null;
 // Variable: homePageQuery
 // Query:   *[_type == "home"][0]{    hero {      title,      text,      primaryCta {        text,        url      },      secondaryCta {        text,        url      },      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    services {      title,      services[]->{        _id,        title,        "slug": slug.current,        description,         icon {          name        }      }    },    about {      videoUrl,      title,       text,       stats[]{        _key,        value,        title      },      primaryCta {        text,         url,         icon {          name,        }      },      secondaryCta {        title,        text,         url,         icon {          name        }      }    },    workingProcess {      title,       processes[] {        _key,        text,         title,        icon {          name        }      }    },    projects {      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    testimonials {      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key     }   },    chooseUs,   pricing {     title,     plans[]->{       _id,       title,       text,       currency,       price,       billingRate,       billingCycle,       features[]{         _key,         text,         isIncluded       },       url     }   },   contactBannerOne {    text,    cta {      text,       icon {        name      },      url    }  },   contact {    title,    text,    cta[] {      _key,      title,      text,       icon {              name      },      url    }  },   blog {    title,     blog[]->{      _id,      title,      "slug": slug.current,      "image": coverImage.asset->url,      "plainText": pt::text(body),      publishedAt     }   },   faq {    title,    faq[]{      _key,      question,      answer    }  },   contactBannerTwo {    text,     primaryCta {      text,       icon {        name      },      url    },     secondaryCta {      text,       icon {        name      },      url    }  }  }
 export type HomePageQueryResult = {
@@ -914,9 +956,12 @@ export type ServicePageQueryResult = {
   }>;
 } | null;
 // Variable: sitemapQuery
-// Query:  {  "pages": *[_type == "page"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "post"]{    "slug": slug.current,    _createdAt  }}
+// Query:  {  "pages": *[_type == "page"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
 export type SitemapQueryResult = {
-  pages: Array<never>;
+  pages: Array<{
+    slug: string;
+    _createdAt: string;
+  }>;
   blog: Array<{
     slug: string;
     publishedAt: string;
