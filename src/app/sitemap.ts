@@ -25,5 +25,5 @@ export default async function sitemap() {
     lastModified: project._createdAt,
   }));
 
-  return [...mainNavigations, ...blog, services, projects];
+  return [...mainNavigations, ...blog, ...services, ...projects];
 }
