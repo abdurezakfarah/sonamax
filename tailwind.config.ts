@@ -22,9 +22,6 @@ const config = {
       },
     },
     extend: {
-      // screens: {
-      //   xs: "450px",
-      // },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
@@ -95,7 +92,6 @@ const config = {
         ],
       },
       backgroundImage: {
-        pattern: "url('/assets/images/background/pattern.png')",
         blob: "url('/assets/images/background/blob.svg')",
       },
       keyframes: {

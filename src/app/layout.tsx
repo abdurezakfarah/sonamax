@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  authors: [{ name: "Abdurezak Farah", url: "https://www.cabdirisaaq.com" }],
+  authors: [{ name: "Sonamax marketing", url: "https://www.sonamaxmarketing.com" }],
   generator: "Next.js",
   keywords: [
     "digital marketing agency",

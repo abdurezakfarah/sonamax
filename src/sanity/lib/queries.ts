@@ -329,3 +329,24 @@ export const servicePageQuery = groq`
     }
   }
 `
+
+export const sitemapQuery = groq`
+ {
+  "pages": *[_type == "page"]{
+    "slug": slug.current,
+    "_createdAt": _createdAt
+  },
+  "blog": *[_type == "post"]{
+    "slug": slug.current,
+    "publishedAt": publishedAt
+  },
+  "services": *[_type == "service"]{
+    "slug": slug.current,
+    _createdAt
+  },
+  "projects": *[_type == "post"]{
+    "slug": slug.current,
+    _createdAt
+  }
+}
+`; 

@@ -52,3 +52,5 @@ export const excludedListTypes = new Set(["configuration", "home"]);
 // 1) services
 // 2) projects
 // 3) Settings
+// 4) about-us
+// 5) social links

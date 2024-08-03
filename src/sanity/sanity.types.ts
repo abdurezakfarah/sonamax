@@ -913,3 +913,20 @@ export type ServicePageQueryResult = {
     slug: string;
   }>;
 } | null;
+// Variable: sitemapQuery
+// Query:  {  "pages": *[_type == "page"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "post"]{    "slug": slug.current,    _createdAt  }}
+export type SitemapQueryResult = {
+  pages: Array<never>;
+  blog: Array<{
+    slug: string;
+    publishedAt: string;
+  }>;
+  services: Array<{
+    slug: string;
+    _createdAt: string;
+  }>;
+  projects: Array<{
+    slug: string;
+    _createdAt: string;
+  }>;
+};
