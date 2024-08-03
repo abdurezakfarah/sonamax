@@ -1,5 +1,3 @@
-
-
 import aboutBgImage from "@/assets/images/backgrounds/about.jpg";
 import aboutOneBgImage from "@/assets/images/resources/about1-1.jpg";
 import aboutTwoBgImage from "@/assets/images/resources/about1-2.jpg";
@@ -57,16 +55,15 @@ export function About({
         sizes="100vw"
         className="pointer-events-none -z-10 object-cover"
       />
-      <div className="relative z-10 aspect-square flex-1">
+      <div className="relative z-10 aspect-square flex-1 max-md:w-full">
         <div className="overlay-animation relative aspect-[3/4] bg-primary-dark lg:aspect-square lg:w-4/5">
           <Image
             src={aboutOneBgImage}
             alt="About One background image"
             fill
             sizes="100vw"
-            className="object-cover"
+            className="pointer-events-none object-cover"
           />
-          {/* EXP BOX  */}
           <div className="absolute left-0 top-0 flex">
             <div className="relative flex h-24 w-32 bg-[#1E1E1E]" aria-hidden>
               <div className="relative m-auto size-4/5">
@@ -83,7 +80,6 @@ export function About({
               MARKETING SOLUTION
             </h4>
           </div>
-          {/* PLAY IMAGE  */}
           <div className="overlay-animation relative left-1/2 top-1/2 hidden aspect-square w-4/6 items-center justify-center lg:flex">
             <Image
               src={aboutTwoBgImage}
@@ -127,7 +123,9 @@ export function About({
           <CallToAction asChild>
             <Link href={primaryCta.url}>
               <span>{primaryCta.text}</span>
-              {primaryCta.icon && <Icon icon={primaryCta.icon.name as string} />}
+              {primaryCta.icon && (
+                <Icon icon={primaryCta.icon.name as string} />
+              )}
             </Link>
           </CallToAction>
 
