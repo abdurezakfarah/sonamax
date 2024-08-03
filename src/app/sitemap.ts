@@ -12,6 +12,11 @@ const mainNavigations: MetadataRoute.Sitemap = mainNav.map((nav) => ({
 export default async function sitemap() {
   const siteMapData = await client.fetch<SitemapQueryResult>(sitemapQuery);
 
+  const pages = siteMapData.pages.map((page) => ({
+    url: `${siteConfig.url}/${page.slug}`,
+    lastModified: page._createdAt,
+  }));
+
   const blog = siteMapData.blog.map((post) => ({
     url: `${siteConfig.url}/blog/${post.slug}`,
     lastModified: post.publishedAt,
@@ -25,5 +30,5 @@ export default async function sitemap() {
     lastModified: project._createdAt,
   }));
 
-  return [...mainNavigations, ...blog, ...services, ...projects];
+  return [...mainNavigations, ...pages, ...blog, ...services, ...projects];
 }
