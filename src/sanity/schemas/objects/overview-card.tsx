@@ -1,5 +1,7 @@
 import type { ObjectDefinition, Rule } from "sanity";
-import { preview } from "sanity-plugin-icon-picker";
+import { Icon } from "@iconify/react";
+
+
 export const overviewCard: ObjectDefinition = {
   name: "overviewCard",
   type: "object",
@@ -7,10 +9,7 @@ export const overviewCard: ObjectDefinition = {
     {
       name: "icon",
       title: "Icon",
-      type: "iconPicker",
-      options: {
-        outputFormat: "react",
-      },
+      type: "icon",
       validation: (rule: Rule) => rule.required().error("Icon is required."),
     },
     {
@@ -31,12 +30,11 @@ export const overviewCard: ObjectDefinition = {
     select: {
       title: "title",
       iconName: "icon.name",
-      iconProvider: "icon.provider",
     },
-    prepare({ title, iconName, iconProvider }) {
+    prepare({ title, iconName }) {
       return {
         title,
-        media: preview({ name: iconName, provider: iconProvider }),
+        media: <Icon icon={iconName} />,
       };
     },
   },

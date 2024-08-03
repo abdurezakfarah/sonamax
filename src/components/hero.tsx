@@ -1,9 +1,8 @@
-"use client";
 import heroBannerImage from "@/assets/images/backgrounds/hero-banner.jpg";
 import { cn } from "@/lib/utilities/cn";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import { preview } from "sanity-plugin-icon-picker";
 import { callToActionVariants } from "./cta";
 import { Icons } from "./icons";
 
@@ -23,8 +22,7 @@ interface HeroProps {
     name: string;
     url: string;
     icon: {
-      provider: string;
-      name: string;
+      name: string | null;
     };
   }> | null;
 }
@@ -98,7 +96,7 @@ export function Hero({
                   title={link.name}
                   className="inline-flex size-8 items-center justify-center rounded-full border text-center text-white [&>svg]:size-3.5"
                 >
-                  {preview(link.icon)}
+                  <Icon icon={link.icon.name as string} />
                   <span className="sr-only">Follow us on:{link.name}</span>
                 </Link>
               </li>

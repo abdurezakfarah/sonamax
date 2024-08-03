@@ -3,7 +3,7 @@ import { structure } from "@/sanity/structure";
 // import { codeInput } from "@sanity/code-input";
 import { Icons } from "@/components/icons";
 import { visionTool } from "@sanity/vision";
-import { iconPicker } from "sanity-plugin-icon-picker";
+import { iconify } from "sanity-plugin-iconify";
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
@@ -26,6 +26,6 @@ export default defineConfig({
       structure: structure,
     }),
     visionTool({ defaultApiVersion: apiVersion }),
-    iconPicker()
+    iconify()
   ],
 });

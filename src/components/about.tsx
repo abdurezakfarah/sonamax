@@ -1,16 +1,16 @@
-"use client"
+
 
 import aboutBgImage from "@/assets/images/backgrounds/about.jpg";
 import aboutOneBgImage from "@/assets/images/resources/about1-1.jpg";
 import aboutTwoBgImage from "@/assets/images/resources/about1-2.jpg";
 import { cn } from "@/lib/utilities/cn";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
 import { NumberTicker, type NumberTickerProps } from "./ui/number-ticker";
-import { preview } from "sanity-plugin-icon-picker";
 
 interface Stats {
   _key: string;
@@ -27,8 +27,7 @@ interface AboutProps {
     text: string;
     url: string;
     icon: {
-      name: string;
-      provider: string;
+      name: string | null;
     } | null;
   };
   secondaryCta: {
@@ -36,8 +35,7 @@ interface AboutProps {
     text: string;
     url: string;
     icon: {
-      name: string;
-      provider: string;
+      name: string | null;
     } | null;
   };
 }
@@ -103,7 +101,7 @@ export function About({
           </div>
         </div>
       </div>
-      <div className="flex flex-1 z-10 flex-col justify-center gap-6">
+      <div className="z-10 flex flex-1 flex-col justify-center gap-6">
         <div className="relative flex items-stretch py-3">
           <div
             className="h-[calc(100% + 0.75rem)] -my-3 w-3 origin-[top_center] bg-primary"
@@ -129,15 +127,18 @@ export function About({
           <CallToAction asChild>
             <Link href={primaryCta.url}>
               <span>{primaryCta.text}</span>
-              {primaryCta.icon && preview(primaryCta.icon)}
+              {primaryCta.icon && <Icon icon={primaryCta.icon.name as string} />}
             </Link>
           </CallToAction>
 
           <div className="relative inline-flex items-center gap-3">
             <Link href={secondaryCta.url} className="i flex gap-0 md:gap-2">
               {secondaryCta.icon && (
-                <div className="flex size-11 items-center justify-center border border-primary [&>svg]:fill-primary">
-                  {preview(secondaryCta.icon)}
+                <div className="flex size-11 items-center justify-center border border-primary">
+                  <Icon
+                    icon={secondaryCta.icon.name as string}
+                    className="text-primary"
+                  />
                 </div>
               )}
 

@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
+import { Icon } from "@iconify/react";
 import type { Rule, SchemaTypeDefinition } from "sanity";
-import { preview } from "sanity-plugin-icon-picker";
 
 export const configuration: SchemaTypeDefinition = {
   type: "document",
@@ -29,7 +29,7 @@ export const configuration: SchemaTypeDefinition = {
             {
               name: "icon",
               title: "icon",
-              type: "iconPicker",
+              type: "icon",
               validation: (rule: Rule) =>
                 rule.required().error("Icon is required"),
             },
@@ -55,7 +55,7 @@ export const configuration: SchemaTypeDefinition = {
             prepare({ name, icon }) {
               return {
                 title: name,
-                media: preview(icon),
+                media: <Icon icon={icon.name} />,
               };
             },
           },
@@ -126,15 +126,15 @@ export const configuration: SchemaTypeDefinition = {
           ],
           preview: {
             select: {
-                title: "title"
+              title: "title",
             },
-            prepare({title}){
-                return {
-                    title,
-                    media: Icons.section
-                }
-            }
-          }
+            prepare({ title }) {
+              return {
+                title,
+                media: Icons.section,
+              };
+            },
+          },
         },
       ],
       validation: (rule: Rule) => rule.required().error("Footer is required"),

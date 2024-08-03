@@ -9,11 +9,11 @@ import { FooterQueryResult } from "@/sanity/sanity.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { preview } from "sanity-plugin-icon-picker";
-import { Icon, Icons } from "./icons";
+import { Icon as IconType, Icons } from "./icons";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
+import {Icon} from "@iconify/react"
 
 export function Footer({ data: footerData }: { data: FooterQueryResult }) {
   if (!footerData) {
@@ -51,7 +51,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
                 key={socialLink._key}
                 className="group border border-[#797979] p-2.5 transition-colors duration-300 hover:bg-primary [&>svg]:size-5 [&>svg]:text-[#79797979] [&>svg]:transition-colors [&>svg]:duration-300 hover:[&>svg]:text-white"
               >
-                {preview(socialLink.icon)}
+                <Icon icon={socialLink.icon.name as string} />
                 <span className="sr-only">Follow us on:{socialLink.name}</span>
               </Link>
             ))}
@@ -99,7 +99,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
 }
 
 interface CardProps {
-  Icon: Icon;
+  Icon: IconType;
   title: string;
   text: string;
   href?: string;

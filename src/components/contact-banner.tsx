@@ -1,8 +1,7 @@
-"use client";
 import contactBannerBg from "@/assets/images/backgrounds/contact-banner.jpg";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import { preview } from "sanity-plugin-icon-picker";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
 
@@ -11,8 +10,7 @@ interface ContactBannerOne {
   cta: {
     text: string;
     icon: {
-      name: string;
-      provider: string;
+      name: string | null;
     } | null;
     url: string;
   };
@@ -23,16 +21,14 @@ interface ContactBannerTwo {
   primaryCta: {
     text: string;
     icon: {
-      name: string;
-      provider: string;
+      name: string | null;
     } | null;
     url: string;
   };
   secondaryCta: {
     text: string;
     icon: {
-      name: string;
-      provider: string;
+      name: string | null;
     } | null;
     url: string;
   } | null;
@@ -56,7 +52,7 @@ export function ContactBannerOne({ text, cta }: ContactBannerOne) {
         <CallToAction>
           <Link href="/contact-us">{cta.text}</Link>
           {cta.icon && (
-            <div className="[&>svg]:size-5">{preview(cta.icon)}</div>
+            <Icon icon={cta.icon.name as string} className="size-6" />
           )}
         </CallToAction>
       </div>
@@ -85,7 +81,12 @@ export function ContactBannerTwo({
             className="flex-row-reverse items-center gap-x-2 py-5 text-white hover:text-white"
           >
             <Link href={secondaryCta.url}>{secondaryCta.text}</Link>
-            {secondaryCta.icon && preview(secondaryCta.icon)}
+            {secondaryCta.icon && (
+              <Icon
+                icon={secondaryCta.icon.name as string}
+                className="size-6"
+              />
+            )}
           </CallToAction>
         )}
       </div>

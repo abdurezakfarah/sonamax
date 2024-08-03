@@ -15,7 +15,7 @@ export default async function RoutesLayout({
     <div>
       <Header />
       {children}
-        <Footer data={footerData} />
+      <Footer data={footerData} />
       <TailwindIndicator />
     </div>
   );

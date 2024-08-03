@@ -10,8 +10,8 @@ export const stats: ObjectDefinition = {
       validation: (rule: Rule) => [rule.required().error("Title is required.")],
     },
     {
-      type: "number",
       name: "value",
+      type: "number",
       title: "Value",
       validation: (rule: Rule) => [
         rule.required().error("Value number is required"),
@@ -20,4 +20,16 @@ export const stats: ObjectDefinition = {
       ],
     },
   ],
+  preview: {
+    select: {
+      title: "title",
+      value: "value",
+    },
+    prepare({ title, value }) {
+      return {
+        title,
+        media: <span>{value}</span>,
+      };
+    },
+  },
 };

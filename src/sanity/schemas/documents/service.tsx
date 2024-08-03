@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
+import { Icon } from "@iconify/react";
 import type { Rule, SchemaTypeDefinition } from "sanity";
-import { preview } from "sanity-plugin-icon-picker";
 
 export const service: SchemaTypeDefinition = {
   name: "service",
@@ -35,12 +35,8 @@ export const service: SchemaTypeDefinition = {
     {
       name: "icon",
       title: "Icon",
-      type: "iconPicker",
-      options: {
-        outputFormat: "react",
-      },
-      validation: (rule: Rule) =>
-        rule.required().error("Icon is required."),
+      type: "icon",
+      validation: (rule: Rule) => rule.required().error("Icon is required."),
     },
     {
       name: "overview",
@@ -53,13 +49,12 @@ export const service: SchemaTypeDefinition = {
   preview: {
     select: {
       title: "title",
-      provider: "icon.provider",
-      name: "icon.name",
+      icon: "icon.name",
     },
-    prepare({ title, provider, name }) {
+    prepare({ title, icon }) {
       return {
         title,
-        media: preview({ name, provider }),
+        media: <Icon icon={icon} />,
       };
     },
   },

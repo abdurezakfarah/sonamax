@@ -342,7 +342,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "iconPicker"
+            "name": "icon"
           },
           "optional": false
         },
@@ -1765,7 +1765,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "inline",
-          "name": "iconPicker"
+          "name": "icon"
         },
         "optional": false
       },
@@ -3205,7 +3205,7 @@
           "type": "objectAttribute",
           "value": {
             "type": "inline",
-            "name": "iconPicker"
+            "name": "icon"
           },
           "optional": true
         },
@@ -3272,7 +3272,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "inline",
-                  "name": "iconPicker"
+                  "name": "icon"
                 },
                 "optional": false
               },
@@ -3390,7 +3390,7 @@
     }
   },
   {
-    "name": "iconPicker",
+    "name": "icon",
     "type": "type",
     "value": {
       "type": "object",
@@ -3399,24 +3399,10 @@
           "type": "objectAttribute",
           "value": {
             "type": "string",
-            "value": "iconPicker"
+            "value": "icon"
           }
         },
-        "provider": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
         "name": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "svg": {
           "type": "objectAttribute",
           "value": {
             "type": "string"

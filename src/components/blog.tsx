@@ -1,5 +1,3 @@
-"use client";
-
 import dotsBgImage from "@/assets/images/backgrounds/dots.jpg";
 import Image from "next/image";
 import Link from "next/link";

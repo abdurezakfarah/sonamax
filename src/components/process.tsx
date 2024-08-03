@@ -1,12 +1,11 @@
-"use client";
-import { preview } from "sanity-plugin-icon-picker";
+import { Icon } from "@iconify/react";
+
 interface Process {
   _key: string;
   text: string;
   title: string;
   icon: {
-    provider: string;
-    name: string;
+    name: string | null;
   };
 }
 
@@ -34,10 +33,13 @@ function ProcessCard({ title, icon, text }: Process) {
   return (
     <article className="group relative flex flex-col items-center gap-y-4 rounded border border-primary-light bg-foreground px-6 py-7 text-center shadow-sm">
       <div
-        className="flex w-fit items-center justify-center bg-primary p-3 text-primary-content [&>svg]:size-7 [&>svg]:transition-transform [&>svg]:duration-300 group-hover:[&>svg]:rotate-[360deg]"
+        className="flex w-fit items-center justify-center bg-primary p-3.5 text-primary-content"
         aria-hidden
       >
-        {preview(icon)}
+        <Icon
+          icon={icon.name as string}
+          className="size-[30px] transition-transform duration-300 group-hover:rotate-[360deg]"
+        />
       </div>
       <hgroup className="space-y-2">
         <h3 className="font-title text-2xl uppercase tracking-tight">

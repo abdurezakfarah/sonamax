@@ -1,5 +1,5 @@
 import type { ObjectDefinition, Rule } from "sanity";
-import { preview } from "sanity-plugin-icon-picker";
+import {Icon} from "@iconify/react"
 
 export const cta: ObjectDefinition = {
   name: "cta",
@@ -21,10 +21,7 @@ export const cta: ObjectDefinition = {
     {
       name: "icon",
       title: "Icon",
-      type: "iconPicker",
-      options: {
-        outputFormat: "react",
-      },
+      type: "icon",
     },
     {
       type: "url",
@@ -42,7 +39,7 @@ export const cta: ObjectDefinition = {
   ],
   preview: {
     select: {
-      icon: "icon",
+      icon: "icon.name",
       title: "title",
       text: "text",
     },
@@ -50,7 +47,7 @@ export const cta: ObjectDefinition = {
       return {
         title,
         subtitle: text,
-        media: preview(icon),
+        media: <Icon icon={icon}/>,
       };
     },
   },

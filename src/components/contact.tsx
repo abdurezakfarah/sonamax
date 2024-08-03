@@ -1,19 +1,15 @@
-"use client";
 import chooseBgImage from "@/assets/images/backgrounds/choose-us.jpg";
-import { siteConfig } from "@/config/site";
+import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
-import { preview } from "sanity-plugin-icon-picker";
 import { ContactForm } from "./contact-form";
-import { Icons } from "./icons";
 
 interface Cta {
   _key: string;
   title: string | null;
   text: string;
   icon: {
-    name: string;
-    provider: string;
+    name: string | null;
   } | null;
   url: string;
 }
@@ -43,11 +39,9 @@ export function Contact({ title, text, cta: ctas }: Contact) {
             <p className="text-white/90">{text}</p>
           </hgroup>
           <div className="grid gap-5 sm:grid-cols-2">
-            {
-              ctas.map(cta=> (
-                <ActionCard key={cta._key} {...cta} />
-              ))
-            }
+            {ctas.map((cta) => (
+              <ActionCard key={cta._key} {...cta} />
+            ))}
           </div>
         </div>
         <div className="relative flex flex-1">
@@ -63,10 +57,10 @@ function ActionCard({ icon, title, text, url }: Cta) {
     <article className="relative flex gap-3">
       {icon && (
         <div
-          className="text-primary flex size-11 items-center justify-center bg-foreground [&>svg]:size-5"
+          className="flex size-11 items-center justify-center bg-foreground text-primary"
           aria-hidden={true}
         >
-          {preview(icon)}
+          <Icon icon={icon.name as string} className="size-7" />
         </div>
       )}
 

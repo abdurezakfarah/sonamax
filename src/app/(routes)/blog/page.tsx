@@ -9,7 +9,7 @@ import Link from "next/link";
 import readingTime from "reading-time";
 
 export const metadata: Metadata = {
-  title: "blog",
+  title: "Blog",
 };
 
 interface Post {
@@ -24,6 +24,9 @@ interface Post {
 
 export default async function Page() {
   const posts = await client.fetch<BlogPageQueryResult>(blogPageQuery);
+  if (!posts) {
+    return <p>No posts yet.</p>;
+  }
   return (
     <main>
       <PageHeader title="Blog" />

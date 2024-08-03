@@ -20,7 +20,6 @@ export const homePageQuery = groq`
           name,
           url,
           icon {
-            provider,
             name
           }
         }
@@ -34,7 +33,6 @@ export const homePageQuery = groq`
         "slug": slug.current,
         description, 
         icon {
-          provider, 
           name
         }
       }
@@ -52,7 +50,6 @@ export const homePageQuery = groq`
         text, 
         url, 
         icon {
-          provider,
           name,
         }
       },
@@ -61,7 +58,6 @@ export const homePageQuery = groq`
         text, 
         url, 
         icon {
-          provider,
           name
         }
       }
@@ -73,7 +69,6 @@ export const homePageQuery = groq`
         text, 
         title,
         icon {
-          provider, 
           name
         }
       }
@@ -124,7 +119,6 @@ export const homePageQuery = groq`
     cta {
       text, 
       icon {
-        provider,
         name
       },
       url
@@ -138,7 +132,6 @@ export const homePageQuery = groq`
       title,
       text, 
       icon {      
-        provider,
         name
       },
       url
@@ -168,7 +161,6 @@ export const homePageQuery = groq`
     primaryCta {
       text, 
       icon {
-        provider,
         name
       },
       url
@@ -176,7 +168,6 @@ export const homePageQuery = groq`
      secondaryCta {
       text, 
       icon {
-        provider,
         name
       },
       url
@@ -192,7 +183,6 @@ export const footerQuery = groq`
     name,
     url,
     icon {
-      provider,
       name
     }
   },
@@ -318,8 +308,7 @@ export const servicesPageQuery = groq`
       title,
       "slug": slug.current,
       description, 
-      icon {
-        provider, 
+      icon { 
         name
       }
    }

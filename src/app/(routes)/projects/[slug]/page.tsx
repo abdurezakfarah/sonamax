@@ -59,10 +59,10 @@ export default async function Page({ params }: ProjectPageProps) {
   return (
     <main className="relative">
       <PageHeader title="Project Details" />
-      <div className="container relative flex gap-12 px-10 py-4 max-md:flex-col-reverse">
-        <div className="sticky top-0 aspect-square w-[280px] pb-7">
+      <div className="container flex gap-12 px-10 py-4 max-md:flex-col-reverse">
+        <div className="sticky top-20 aspect-square w-[280px] pb-7">
           <section className="relative space-y-4">
-            <h2 className="sticky top-0 bg-background py-3 font-title text-lg font-medium">
+            <h2 className="bg-background py-3 font-title text-lg font-medium">
               Recently completed projects
             </h2>
             {project.projects.map((project) => (

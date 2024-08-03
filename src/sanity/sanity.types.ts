@@ -70,7 +70,7 @@ export type Geopoint = {
 
 export type OverviewCard = {
   _type: "overviewCard";
-  icon: IconPicker;
+  icon: Icon;
   title: string;
   text: string;
 };
@@ -283,7 +283,7 @@ export type Service = {
   title: string;
   slug: Slug;
   description: string;
-  icon: IconPicker;
+  icon: Icon;
   overview: Editor;
 };
 
@@ -535,7 +535,7 @@ export type Cta = {
   _type: "cta";
   title?: string;
   text: string;
-  icon?: IconPicker;
+  icon?: Icon;
   url: string;
 };
 
@@ -547,7 +547,7 @@ export type Configuration = {
   _rev: string;
   socialLinks: Array<{
     name: string;
-    icon: IconPicker;
+    icon: Icon;
     url: string;
     _type: "socialLink";
     _key: string;
@@ -565,11 +565,9 @@ export type Configuration = {
   }>;
 };
 
-export type IconPicker = {
-  _type: "iconPicker";
-  provider?: string;
+export type Icon = {
+  _type: "icon";
   name?: string;
-  svg?: string;
 };
 
 export type AllSanitySchemaTypes =
@@ -600,11 +598,11 @@ export type AllSanitySchemaTypes =
   | CustomImage
   | Cta
   | Configuration
-  | IconPicker;
+  | Icon;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: homePageQuery
-// Query:   *[_type == "home"][0]{    hero {      title,      text,      primaryCta {        text,        url      },      secondaryCta {        text,        url      },      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            provider,            name          }        }      }.socialLinks    },    services {      title,      services[]->{        _id,        title,        "slug": slug.current,        description,         icon {          provider,           name        }      }    },    about {      videoUrl,      title,       text,       stats[]{        _key,        value,        title      },      primaryCta {        text,         url,         icon {          provider,          name,        }      },      secondaryCta {        title,        text,         url,         icon {          provider,          name        }      }    },    workingProcess {      title,       processes[] {        _key,        text,         title,        icon {          provider,           name        }      }    },    projects {      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    testimonials {      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key     }   },    chooseUs,   pricing {     title,     plans[]->{       _id,       title,       text,       currency,       price,       billingRate,       billingCycle,       features[]{         _key,         text,         isIncluded       },       url     }   },   contactBannerOne {    text,    cta {      text,       icon {        provider,        name      },      url    }  },   contact {    title,    text,    cta[] {      _key,      title,      text,       icon {              provider,        name      },      url    }  },   blog {    title,     blog[]->{      _id,      title,      "slug": slug.current,      "image": coverImage.asset->url,      "plainText": pt::text(body),      publishedAt     }   },   faq {    title,    faq[]{      _key,      question,      answer    }  },   contactBannerTwo {    text,     primaryCta {      text,       icon {        provider,        name      },      url    },     secondaryCta {      text,       icon {        provider,        name      },      url    }  }  }
+// Query:   *[_type == "home"][0]{    hero {      title,      text,      primaryCta {        text,        url      },      secondaryCta {        text,        url      },      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    services {      title,      services[]->{        _id,        title,        "slug": slug.current,        description,         icon {          name        }      }    },    about {      videoUrl,      title,       text,       stats[]{        _key,        value,        title      },      primaryCta {        text,         url,         icon {          name,        }      },      secondaryCta {        title,        text,         url,         icon {          name        }      }    },    workingProcess {      title,       processes[] {        _key,        text,         title,        icon {          name        }      }    },    projects {      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    testimonials {      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key     }   },    chooseUs,   pricing {     title,     plans[]->{       _id,       title,       text,       currency,       price,       billingRate,       billingCycle,       features[]{         _key,         text,         isIncluded       },       url     }   },   contactBannerOne {    text,    cta {      text,       icon {        name      },      url    }  },   contact {    title,    text,    cta[] {      _key,      title,      text,       icon {              name      },      url    }  },   blog {    title,     blog[]->{      _id,      title,      "slug": slug.current,      "image": coverImage.asset->url,      "plainText": pt::text(body),      publishedAt     }   },   faq {    title,    faq[]{      _key,      question,      answer    }  },   contactBannerTwo {    text,     primaryCta {      text,       icon {        name      },      url    },     secondaryCta {      text,       icon {        name      },      url    }  }  }
 export type HomePageQueryResult = {
   hero: {
     title: string;
@@ -622,8 +620,7 @@ export type HomePageQueryResult = {
       name: string;
       url: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       };
     }> | null;
   };
@@ -635,8 +632,7 @@ export type HomePageQueryResult = {
       slug: string;
       description: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       };
     }>;
   };
@@ -653,8 +649,7 @@ export type HomePageQueryResult = {
       text: string;
       url: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
     };
     secondaryCta: {
@@ -662,8 +657,7 @@ export type HomePageQueryResult = {
       text: string;
       url: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
     };
   };
@@ -674,8 +668,7 @@ export type HomePageQueryResult = {
       text: string;
       title: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       };
     }>;
   };
@@ -733,8 +726,7 @@ export type HomePageQueryResult = {
     cta: {
       text: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
       url: string;
     };
@@ -747,8 +739,7 @@ export type HomePageQueryResult = {
       title: string | null;
       text: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
       url: string;
     }>;
@@ -777,31 +768,28 @@ export type HomePageQueryResult = {
     primaryCta: {
       text: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
       url: string;
     };
     secondaryCta: {
       text: string;
       icon: {
-        provider: string ;
-        name: string ;
+        name: string | null;
       } | null;
       url: string;
     } | null;
   };
 } | null;
 // Variable: footerQuery
-// Query:   *[_type == "configuration"][0]{  socialLinks[]{    _key,    name,    url,    icon {      provider,      name    }  },  footer[]{    _key,    title,    links[]{      _key,      title,      url    }  }}
+// Query:   *[_type == "configuration"][0]{  socialLinks[]{    _key,    name,    url,    icon {      name    }  },  footer[]{    _key,    title,    links[]{      _key,      title,      url    }  }}
 export type FooterQueryResult = {
   socialLinks: Array<{
     _key: string;
     name: string;
     url: string;
     icon: {
-      provider: string;
-      name: string;
+      name: string | null;
     };
   }>;
   footer: Array<{
@@ -901,15 +889,14 @@ export type PostPageQueryResult = {
   }>;
 } | null;
 // Variable: servicesPageQuery
-// Query:    *[_type == "service"][0..20]{     _id,      title,      "slug": slug.current,      description,       icon {        provider,         name      }   } 
+// Query:    *[_type == "service"][0..20]{     _id,      title,      "slug": slug.current,      description,       icon {         name      }   } 
 export type ServicesPageQueryResult = Array<{
   _id: string;
   title: string;
   slug: string;
   description: string;
   icon: {
-    provider: string;
-    name: string;
+    name: string | null;
   };
 }>;
 // Variable: servicePageQuery
