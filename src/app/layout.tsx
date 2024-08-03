@@ -1,4 +1,3 @@
-import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utilities/cn";
 import type { Metadata, Viewport } from "next";

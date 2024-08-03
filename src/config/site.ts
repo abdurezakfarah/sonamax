@@ -5,7 +5,7 @@ export const siteConfig: SiteConfig = {
   shortName: "Sonamax",
   description:
     "Sonamax is a digital marketing agency offering SEO, social media marketing, content creation, and data-driven campaigns to boost your online presence and drive business growth.",
-  url: "https://sonamax.vercel.ap",
+  url: "https://sonamax.vercel.app",
   email: "info@sonamax.com",
   phone: "+254799992045",
   location: "Juja rd, Nairobi, Kenya",
