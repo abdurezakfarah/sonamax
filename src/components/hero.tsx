@@ -82,9 +82,9 @@ export function Hero({
           </div>
         </section>
         <aside className="absolute right-20 top-8 hidden origin-[right_top] -translate-y-1/2 -rotate-90 items-center md:flex">
-          <h4 className="relative mb-0 mr-14 w-fit pr-5 font-semibold uppercase text-white before:absolute before:left-full before:top-1/2 before:h-px before:w-7 before:-translate-y-1/2 before:bg-white before:content-['']">
+          <h2 className="relative mb-0 mr-14 w-fit pr-5 font-semibold uppercase text-white before:absolute before:left-full before:top-1/2 before:h-px before:w-7 before:-translate-y-1/2 before:bg-white before:content-['']">
             Follow us
-          </h4>
+          </h2>
           <ul className="inline-block">
             {socialLinks?.map((link) => (
               <li

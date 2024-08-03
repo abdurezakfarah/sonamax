@@ -11,17 +11,13 @@ import {
 } from "framer-motion";
 
 import { cn } from "@/lib/utilities/cn";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
+import { Menubar } from "./menubar";
 import { Navbar } from "./navbar";
 import { Button } from "./ui/button";
-
-const DynamicMenubar = dynamic(() =>
-  import("./menubar").then((module) => module.Menubar),
-);
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,23 +54,23 @@ export function Header() {
           </strong>
         </Link>
         <Navbar items={mainNav} />
-        <CallToAction className="max-md:hidden">
+        <CallToAction className="max-md:hidden h-14 py-0">
           <Link href="/contact-us">Let&apos;s talk</Link>
         </CallToAction>
         <Button
           onClick={handleMenuToggle}
-          className="rounded hover:bg-black md:hidden"
+          className="rounded hover:bg-black hover:text-white md:hidden"
           size="icon"
           variant="ghost"
         >
           {isMenuOpen ? <Icons.cross /> : <Icons.menu />}
+          <span className="sr-only">
+            {isMenuOpen ? "Close menu" : "Open menu"}
+          </span>
         </Button>
         <AnimatePresence mode="sync">
           {isMenuOpen && (
-            <DynamicMenubar
-              handleMenuToggle={handleMenuToggle}
-              items={mainNav}
-            />
+            <Menubar handleMenuToggle={handleMenuToggle} items={mainNav} />
           )}
         </AnimatePresence>
       </div>

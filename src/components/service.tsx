@@ -33,7 +33,7 @@ export function Service({ title, slug, description, icon }: Service) {
       </hgroup>
 
       <Link href={`/services/${slug}`} className="absolute inset-0">
-        <span className="sr-only">Learn more</span>
+        <span className="sr-only">Learn more about {title}</span>
       </Link>
     </article>
   );

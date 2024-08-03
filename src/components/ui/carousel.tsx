@@ -294,6 +294,7 @@ const CarouselDots = () => {
           <DotButton
             key={index}
             onClick={() => handleDotButtonClick(index)}
+            aria-label="scrollsnap button"
             className={cn(
               "size-2.5 rounded-full bg-neutral-300 p-0 transition-all duration-300",
               {

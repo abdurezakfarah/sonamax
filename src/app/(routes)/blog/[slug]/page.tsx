@@ -72,6 +72,7 @@ export default async function Page({ params: { slug } }: PostPageProps) {
     author: {
       "@type": "Person",
       "@id": `http://www.twitter.com/${post.author.twitter}`,
+      url: `http://www.twitter.com/${post.author.twitter}`,
       name: post.author.name,
     },
     publisher: {

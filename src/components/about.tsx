@@ -91,6 +91,7 @@ export function About({
             <Link
               href={videoUrl}
               className="relative rounded-full bg-foreground p-4"
+              aria-label="Play intro video"
             >
               <Icons.play className="size-4 fill-primary text-primary" />
             </Link>

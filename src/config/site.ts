@@ -4,12 +4,12 @@ export const siteConfig: SiteConfig = {
   name: "Sonamax Marketing",
   shortName: "Sonamax",
   description:
-    "Sonamax is a digital marketing agency offering SEO, social media marketing, content creation, and data-driven campaigns to boost your online presence and drive business growth.",
+    "Sonamax Marketing Group is the best digital marketing agency, offering top-notch SEO, PPC, social media strategies, content marketing, and premier web and app development services.",
   url: "https://sonamax.vercel.app",
   email: "info@sonamax.com",
   phone: "+254799992045",
   location: "Juja rd, Nairobi, Kenya",
-  website: "www.sonamax.com"
+  website: "www.sonamax.com",
 };
 
 export const mainNav: NavItem[] = [

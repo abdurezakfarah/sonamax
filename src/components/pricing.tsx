@@ -64,7 +64,7 @@ function Price({
           <p>{billingCycle}</p>
         </div>
       </div>
-      <div className="w-[calc(100% + 1.75rem)] relative z-0 -mx-7 mt-7 p-1 px-7">
+      <div className="w-[calc(100% + 1.75rem)] bg-black relative z-0 -mx-7 mt-7 p-1 px-7">
         <Image
           src={shapeBgImage}
           alt="shape bg image"
