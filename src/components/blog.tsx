@@ -53,7 +53,9 @@ export function Blog({ title, blog }: BlogProps) {
                 key={post._id}
                 className="w-full md:basis-1/2 lg:basis-1/3"
               >
-                <Post {...post} />
+                <div className="p-1">
+                  <Post {...post} />
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>

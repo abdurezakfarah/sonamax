@@ -120,7 +120,7 @@ export function About({
           ))}
         </div>
         <hr className="relative my-1 h-px bg-primary max-lg:hidden" />
-        <div className="flex flex-wrap gap-x-3 gap-y-6 max-lg:mt-3 md:gap-6">
+        <div className="flex flex-wrap gap-x-4 gap-y-6 max-lg:mt-3 md:gap-6">
           <CallToAction asChild>
             <Link href={primaryCta.url}>
               <span>{primaryCta.text}</span>
@@ -131,7 +131,7 @@ export function About({
           </CallToAction>
 
           <div className="relative inline-flex items-center gap-3">
-            <Link href={secondaryCta.url} className="i flex gap-0 md:gap-2">
+            <Link href={secondaryCta.url} className="flex gap-2">
               {secondaryCta.icon && (
                 <div className="flex size-11 items-center justify-center border border-primary">
                   <Icon
@@ -174,16 +174,16 @@ function Stats({
   return (
     <hgroup {...props}>
       <NumberTicker
-        delay={0.4}
+        delay={0.1}
         value={value}
-        className="font-title text-lg font-medium text-primary sm:text-xl md:text-2xl lg:text-3xl"
+        className="font-title text-xl font-medium text-primary md:text-2xl lg:text-3xl"
         {...tickerProps}
       />
       <h3
         {...titleProps}
         className={cn(
-          "font-title text-sm font-normal text-white lg:text-base",
-          tickerProps?.className,
+          "font-title text-white lg:text-xl",
+          titleProps?.className,
         )}
       >
         {title}
