@@ -9,7 +9,7 @@ export const siteConfig: SiteConfig = {
   email: "info@sonamax.com",
   phone: "+254799992045",
   location: "Juja rd, Nairobi, Kenya",
-  website: "www.sonamax.com",
+  website: "www.sonamaxmarketing.com",
 };
 
 export const mainNav: NavItem[] = [
