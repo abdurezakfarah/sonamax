@@ -66,7 +66,7 @@ export function ContactBannerTwo({
   secondaryCta,
 }: ContactBannerTwo) {
   return (
-    <section className="container relative flex flex-col justify-between gap-7 bg-primary px-7 py-16 before:absolute before:inset-0 before:bg-pattern before:bg-cover before:bg-no-repeat md:flex-row md:items-center">
+    <section className="container relative flex flex-col justify-between gap-7 bg-primary px-7 py-16 before:absolute before:inset-0 md:flex-row md:items-center">
       <h2 className="font-title text-3xl font-semibold uppercase text-white md:max-w-sm">
         {text}
       </h2>
