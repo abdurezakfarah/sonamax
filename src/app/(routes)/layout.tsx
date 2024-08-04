@@ -5,6 +5,7 @@ import { client } from "@/sanity/lib/client";
 import { footerQuery } from "@/sanity/lib/queries";
 import { FooterQueryResult } from "@/sanity/sanity.types";
 import React from "react";
+import { Toaster } from "sonner";
 
 export default async function RoutesLayout({
   children,
@@ -12,11 +13,17 @@ export default async function RoutesLayout({
   const footerData = await client.fetch<FooterQueryResult>(footerQuery);
 
   return (
-    <div>
+    <>
+      <Toaster
+        position="top-center"
+        richColors
+        duration={3500}
+        className="z-[999999]"
+      />
       <Header />
       {children}
       <Footer data={footerData} />
       <TailwindIndicator />
-    </div>
+    </>
   );
 }

@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "@/lib/utilities/cn";
 
 const callToActionVariants = cva(
-  "relative z-0 inline-flex w-fit items-center justify-center space-x-2 whitespace-nowrap rounded-md font-title text-base font-semibold uppercase leading-normal ring-offset-background transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:origin-top-right before:scale-x-0 before:rounded-[inherit] before:transition-transform before:duration-500 before:ease-custom before:content-[''] hover:before:origin-bottom-left hover:before:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "relative z-0 inline-flex w-fit gap-2 items-center justify-center space-x-2 whitespace-nowrap rounded-md font-title text-base font-semibold uppercase leading-normal ring-offset-background transition-colors before:absolute before:left-0 before:top-0 before:-z-10 before:size-full before:origin-top-right before:scale-x-0 before:rounded-[inherit] before:transition-transform before:duration-500 before:ease-custom before:content-[''] hover:before:origin-bottom-left hover:before:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
