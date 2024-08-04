@@ -18,10 +18,11 @@ export const price: SchemaTypeDefinition = {
       type: "string",
       options: {
         list: [
-          { value: "KES", title: "KES" },
+          { value: "C$", title: "CAD" },
           { value: "$", title: "USD" },
           { value: "€", title: "EURO" },
           { value: "£", title: "GBP" },
+          { value: "KES", title: "KES" },
         ],
       },
       validation: (rule: Rule) => rule.required().error("Specify the currency"),
