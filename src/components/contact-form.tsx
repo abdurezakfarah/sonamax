@@ -55,6 +55,7 @@ export function ContactForm({
       toast.error(
         `Sorry ${values.name}, an error has occured. We are fixing it.`,
       );
+      console.log(error)
     }
   }
 
