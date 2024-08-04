@@ -1,6 +1,4 @@
-
 import { groq } from "next-sanity";
-
 
 export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0]{
@@ -19,7 +17,7 @@ export const pageQuery = groq`
   `;
 
 export const homePageQuery = groq`
-  *[_type == "home"][0]{
+  *[_type == "home" && _id == 'home'][0]{
     hero {
       title,
       text,
@@ -331,7 +329,6 @@ export const servicesPageQuery = groq`
    }
  `;
 
-
 export const servicePageQuery = groq`
   *[_type == "service" && slug.current == $slug][0]{
     _id, 
@@ -345,7 +342,7 @@ export const servicePageQuery = groq`
       "slug": slug.current
     }
   }
-`
+`;
 
 export const sitemapQuery = groq`
  {
@@ -366,4 +363,4 @@ export const sitemapQuery = groq`
     _createdAt
   }
 }
-`; 
+`;

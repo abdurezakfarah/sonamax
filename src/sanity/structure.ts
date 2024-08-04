@@ -1,8 +1,8 @@
 import { Icons } from "@/components/icons";
-import type { StructureBuilder } from "sanity/structure";
+import type { StructureResolver } from "sanity/structure";
 import { excludedListTypes } from "./schemas";
 
-export const structure = (S: StructureBuilder) =>
+export const structure: StructureResolver = (S) =>
   S.list()
     .title("Content")
     .items([
@@ -11,19 +11,9 @@ export const structure = (S: StructureBuilder) =>
         .title("Pages")
         .icon(Icons.stickyNote)
         .child(
-          S.list()
-            .title("pages")
-            .items([
-              /* PAGE - HOME */
-              S.listItem()
-                .title("Home")
-                .icon(Icons.house)
-                .child(S.document().schemaType("home").documentId("home")),
-              /* OTHERS */
-              S.documentTypeListItem("page")
-                .icon(Icons.stickyNote)
-                .title("Other Pages"),
-            ]),
+           S.documentList()
+           .title("Pages")
+           .filter("_type == 'home' || _type == 'page'")
         ),
 
       /* DOCUMENT TYPES EXCEPT THE EXCLUDED ONES */
