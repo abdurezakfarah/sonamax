@@ -72,7 +72,7 @@ export function Email({ name, email, subject, message, pathname }: EmailProps) {
                 </Column>
               </Row>
             </Section>
-            <Section className="mx-auto my-14 max-w-[580px]">
+            <Section className="mx-auto mt-14 max-w-[580px]">
               <Row>
                 <Text style={{ textAlign: "center", color: "#706a7b" }}>
                   © 2022 {siteConfig.name}, All Rights Reserved <br />
