@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import NextTopLoader from "nextjs-toploader";
 import "../styles/globals.css";
 import { oswald, raleway } from "./ui/fonts";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -85,6 +86,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className="scroll-smooth focus:scroll-auto"
     >
+      <GoogleTagManager gtmId="GTM-N7FWDSXJ" />
       <body
         className={cn(
           "relative min-h-screen font-serif",
@@ -112,3 +114,4 @@ export default function RootLayout({
     </html>
   );
 }
+
