@@ -1,6 +1,5 @@
 "use client";
 import { structure } from "@/sanity/structure";
-// import { codeInput } from "@sanity/code-input";
 import { Icons } from "@/components/icons";
 import { visionTool } from "@sanity/vision";
 import { iconify } from "sanity-plugin-iconify";
@@ -16,10 +15,10 @@ export default defineConfig({
   schema,
   icon: Icons.logo,
   document: {
-    actions: (input, context) =>
+    actions: (prev, context) =>
       singletonTypes.has(context.schemaType)
-        ? input.filter(({ action }) => action && singletonActions.has(action))
-        : input,
+        ? prev.filter(({ action }) => action && singletonActions.has(action))
+        : prev,
   },
   plugins: [
     structureTool({

@@ -59,8 +59,8 @@ export function Blog({ title, blog }: BlogProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          {/* <CarouselPrevious />
+          <CarouselNext /> */}
           <CarouselDots />
         </Carousel>
       </div>

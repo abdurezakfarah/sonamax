@@ -18,13 +18,13 @@ export function BlackLogo(props: LogoProps) {
         <clipPath id="fb312501bf">
           <path
             d="M 94.144531 94.144531 L 259 94.144531 L 259 280.894531 L 94.144531 280.894531 Z M 94.144531 94.144531 "
-            clip-rule="nonzero"
+            clipRule="nonzero"
           />
         </clipPath>
         <clipPath id="6d22987ea3">
           <path
             d="M 134 163 L 280.894531 163 L 280.894531 234 L 134 234 Z M 134 163 "
-            clip-rule="nonzero"
+            clipRule="nonzero"
           />
         </clipPath>
       </defs>
