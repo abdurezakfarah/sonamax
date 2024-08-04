@@ -45,7 +45,7 @@ export function Blog({ title, blog }: BlogProps) {
             align: "start",
             loop: true,
           }}
-          className="mx-auto w-10/12"
+          className="mx-auto w-full md:w-10/12"
         >
           <CarouselContent>
             {blog.map((post) => (
@@ -59,8 +59,8 @@ export function Blog({ title, blog }: BlogProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* <CarouselPrevious />
-          <CarouselNext /> */}
+          <CarouselPrevious className="max-md:hidden" />
+          <CarouselNext  className="max-md:hidden"/>
           <CarouselDots />
         </Carousel>
       </div>
