@@ -1,10 +1,10 @@
+import { GoogleTagManager } from "@/components/googleTagManager";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utilities/cn";
 import type { Metadata, Viewport } from "next";
 import NextTopLoader from "nextjs-toploader";
 import "../styles/globals.css";
 import { oswald, raleway } from "./ui/fonts";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  authors: [{ name: "Sonamax marketing", url: "https://www.sonamaxmarketing.com" }],
+  authors: [
+    { name: "Sonamax marketing", url: "https://www.sonamaxmarketing.com" },
+  ],
   generator: "Next.js",
   keywords: [
     "digital marketing agency",
@@ -114,4 +116,3 @@ export default function RootLayout({
     </html>
   );
 }
-
