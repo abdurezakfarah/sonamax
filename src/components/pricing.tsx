@@ -52,7 +52,7 @@ function Price({
   url,
 }: Price) {
   return (
-    <article className="flex-1 rounded-sm bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2">
+    <article className="flex-1 w-fit rounded-sm bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2">
       <h3 className="font-title text-xl font-medium">{title}</h3>
       <div className="mt-3 flex gap-5">
         <p className="font-title text-4xl font-extrabold text-primary">
