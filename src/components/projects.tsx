@@ -60,8 +60,8 @@ export function Projects({ title, text, projects }: ProjectsProps) {
           className="mx-auto w-10/12"
         >
           <CarouselContent>
-            {projects.map((project, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+            {projects.map((project) => (
+              <CarouselItem key={project._id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                   <Project {...project} />
                 </div>
