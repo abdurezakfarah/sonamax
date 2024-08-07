@@ -7,9 +7,14 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { apiVersion, dataset, projectId } from "./src/sanity/env";
 import { schema, singletonActions, singletonTypes } from "./src/sanity/schemas";
+import { siteConfig } from "@/config/site";
+import { theme } from "https://themer.sanity.build/api/hues?primary=fa4c20";
+
 
 export default defineConfig({
   basePath: "/admin",
+  title: siteConfig.shortName,
+  theme,
   projectId,
   dataset,
   schema,

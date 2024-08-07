@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    urlImports: ["https://themer.sanity.build/"],
+  },
   images: {
     remotePatterns: [
       {
