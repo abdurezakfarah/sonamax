@@ -7,13 +7,13 @@ import {
 } from "@/lib/validations/newsletter-form";
 import { FooterQueryResult } from "@/sanity/sanity.types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { Icon as IconType, Icons } from "./icons";
+import { Icons, Icon as IconType } from "./icons";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import {Icon} from "@iconify/react"
 
 export function Footer({ data: footerData }: { data: FooterQueryResult }) {
   if (!footerData) {
@@ -22,7 +22,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
 
   return (
     <footer className="container space-y-16 bg-[#202020] pt-14 text-white">
-      <div className="grid gap-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="flex gap-14 max-sm:flex-col-reverse sm:grid sm:grid-cols-2 lg:grid-cols-4">
         <section>
           <Link href="/" className="flex items-center gap-2">
             <Icons.logo className="size-6" />
