@@ -78,7 +78,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
           </section>
         ))}
 
-        <section className="lg:-col-start-2 lg:row-span-full">
+        {/* <section className="lg:-col-start-2 lg:row-span-full">
           <div className="relative flex items-stretch">
             <div className="w-1 bg-primary" aria-hidden />
             <h2 className="text-balance px-3 font-title font-semibold uppercase leading-snug text-white sm:text-lg md:text-xl lg:text-2xl">
@@ -89,7 +89,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
             <p>Catch the latest updates in our new newsletter!</p>
             <NewsLetterForm />
           </div>
-        </section>
+        </section> */}
       </div>
       <div className="-mx-8 w-[calc(100%+4rem)] bg-[#282828] py-5">
         <p className="text-center text-sm text-white/60">© 2024 = Sonamax</p>
