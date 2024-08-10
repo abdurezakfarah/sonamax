@@ -17,7 +17,13 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = params;
-  const page = await client.fetch<PageQueryResult>(pageQuery, { slug });
+  const page = await client.fetch<PageQueryResult>(
+    pageQuery,
+    { slug },
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!page) {
     notFound();
@@ -45,7 +51,13 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { slug } }: PageProps) {
-  const page = await client.fetch<PageQueryResult>(pageQuery, { slug });
+  const page = await client.fetch<PageQueryResult>(
+    pageQuery,
+    { slug },
+    {
+      cache: "no-store",
+    },
+  );
 
   if (!page) return;
 
