@@ -23,7 +23,11 @@ interface Post {
 }
 
 export default async function Page() {
-  const posts = await client.fetch<BlogPageQueryResult>(blogPageQuery);
+  const posts = await client.fetch<BlogPageQueryResult>(
+    blogPageQuery,
+    {},
+    { cache: "no-store" },
+  );
   if (!posts) {
     return <p>No posts yet.</p>;
   }
@@ -50,8 +54,8 @@ function Post({ title, slug, excerpt, image, plainText, publishedAt }: Post) {
       {image && <Image src={image} alt="post image" width={403} height={802} />}
       <div className="space-y-3.5 p-5">
         <h3 className="line-clamp-2 font-title text-lg font-medium">{title}</h3>
-        <p className="line-clamp-4 text-copy-light leading-tight">{excerpt}</p>
-        <div className="flex gap-2 text-sm text-lighter">
+        <p className="line-clamp-4 leading-tight text-copy-light">{excerpt}</p>
+        <div className="text-lighter flex gap-2 text-sm">
           <Moment date={publishedAt} />
           <span>&#x2022;</span>
           <span>{readingTime(plainText).text}</span>

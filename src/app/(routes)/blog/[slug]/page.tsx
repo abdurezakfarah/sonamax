@@ -22,7 +22,11 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const { slug } = params;
-  const post = await client.fetch<PostPageQueryResult>(postPageQuery, { slug });
+  const post = await client.fetch<PostPageQueryResult>(
+    postPageQuery,
+    { slug },
+    { cache: "no-store" },
+  );
 
   if (!post) {
     notFound();
@@ -51,7 +55,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { slug } }: PostPageProps) {
-  const post = await client.fetch<PostPageQueryResult>(postPageQuery, { slug });
+  const post = await client.fetch<PostPageQueryResult>(
+    postPageQuery,
+    { slug },
+    { cache: "no-store" },
+  );
 
   if (!post) return;
 
