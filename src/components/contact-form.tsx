@@ -36,7 +36,7 @@ export function ContactForm({
   const [error, setError] = React.useState(false);
 
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
 
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
@@ -52,14 +52,13 @@ export function ContactForm({
     try {
       await sendContactMail(values, { pathname });
 
-      router.push(`/thank-you?name=${values.name}`)
-      // toast.success(`Thank you ${values.name}, we'll reach you back! `);
+      router.push("/thank-you");
     } catch (error: unknown) {
       setError(true);
       toast.error(
         `Sorry ${values.name}, an error has occured. We are fixing it.`,
       );
-      console.log(error)
+      console.log(error);
     }
   }
 
