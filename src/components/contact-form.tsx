@@ -6,7 +6,7 @@ import {
   type ContactFormSchema,
 } from "@/lib/validations/contact-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -34,7 +34,9 @@ export function ContactForm({
   ...props
 }: ContactFormProps) {
   const [error, setError] = React.useState(false);
+
   const pathname = usePathname();
+  const router = useRouter()
 
   const form = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
@@ -49,7 +51,9 @@ export function ContactForm({
   async function onSubmit(values: ContactFormSchema) {
     try {
       await sendContactMail(values, { pathname });
-      toast.success(`Thank you ${values.name}, we'll reach you back! `);
+
+      router.push(`/thank-you?name=${values.name}`)
+      // toast.success(`Thank you ${values.name}, we'll reach you back! `);
     } catch (error: unknown) {
       setError(true);
       toast.error(
@@ -72,7 +76,7 @@ export function ContactForm({
         clearTimeout(timeout);
       }
     };
-  }, [form.formState.isSubmitSuccessful, form.formState.isSubmitted]);
+  }, [form]);
 
   return (
     <section className="mx-auto w-fit rounded-md bg-foreground px-2 py-4">
