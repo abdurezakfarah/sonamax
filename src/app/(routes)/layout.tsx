@@ -17,7 +17,7 @@ export default async function RoutesLayout({
       <Toaster
         position="top-center"
         richColors
-        duration={3500}
+        duration={5000}
         className="z-[999999]"
       />
       <Header />
