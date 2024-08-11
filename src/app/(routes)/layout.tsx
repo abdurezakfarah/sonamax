@@ -10,7 +10,11 @@ import { Toaster } from "sonner";
 export default async function RoutesLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const footerData = await client.fetch<FooterQueryResult>(footerQuery);
+  const footerData = await client.fetch<FooterQueryResult>(
+    footerQuery,
+    {},
+    { cache: "no-store" },
+  );
 
   return (
     <>
