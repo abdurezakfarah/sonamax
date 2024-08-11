@@ -10,6 +10,8 @@ import readingTime from "reading-time";
 
 export const metadata: Metadata = {
   title: "Blog",
+  description:
+    "Explore expert insights on digital marketing trends and strategies. Sonamax Marketing Group's blog offers tips and advice to boost your online presence.",
 };
 
 interface Post {
