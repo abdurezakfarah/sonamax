@@ -51,23 +51,31 @@ export function Email({ name, email, subject, message, pathname }: EmailProps) {
             <Section>
               <Row>
                 <Column className="h-12 px-5">
-                  <Text className="text-xs uppercase">Name</Text>
+                  <Text className="text-[10px] uppercase text-copy-light">
+                    Name
+                  </Text>
                   <Text className="font-bold leading-relaxed">{name}</Text>
                 </Column>
                 <Column className="h-12 px-5">
-                  <Text className="text-xs uppercase">email</Text>
+                  <Text className="text-[10px] uppercase text-copy-light">
+                    email
+                  </Text>
                   <Text className="font-bold leading-relaxed">{email}</Text>
                 </Column>
               </Row>
               <Row>
                 <Column className="h-12 px-5">
-                  <Text className="text-xs uppercase">Subject</Text>
+                  <Text className="text-[10px] uppercase text-copy-light">
+                    Subject
+                  </Text>
                   <Text className="font-bold leading-relaxed">{subject}</Text>
                 </Column>
               </Row>
               <Row>
                 <Column className="h-12 px-5">
-                  <Text className="text-xs uppercase">message</Text>
+                  <Text className="text-[10px] uppercase text-copy-light">
+                    message
+                  </Text>
                   <Text className="font-bold leading-relaxed">{message}</Text>
                 </Column>
               </Row>
