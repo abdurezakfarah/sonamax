@@ -96,6 +96,9 @@ export const metadata: Metadata = {
       color: "#915eff",
     },
   ],
+  other: {
+    "msapplication-TileColor": "#000000",
+  },
 };
 
 export const viewport: Viewport = {
