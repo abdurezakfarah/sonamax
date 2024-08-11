@@ -69,7 +69,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
               {section.links.map((link) => (
                 <li
                   key={link._key}
-                  className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+                  className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-bottom-left after:scale-x-0 after:bg-primary after:transition-all after:duration-300 hover:after:scale-x-100"
                 >
                   <Link href={link.url}>{link.title}</Link>
                 </li>
