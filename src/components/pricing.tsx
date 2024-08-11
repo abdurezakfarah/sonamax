@@ -32,7 +32,7 @@ export function Pricing({ title, plans }: PricingProps) {
       <h2 className="mb-10 text-balance text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
         {title}
       </h2>
-      <div className="flex flex-wrap justify-between gap-x-8 gap-y-7">
+      <div className="flex flex-wrap justify-center gap-x-10 gap-y-7">
         {plans.map((plan) => (
           <Price key={plan._id} {...plan} />
         ))}
@@ -52,7 +52,7 @@ function Price({
   url,
 }: Price) {
   return (
-    <article className="flex-1 w-fit rounded-sm bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2">
+    <article className="lg:flex-1 w-fit rounded-md bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2">
       <h3 className="font-title text-xl font-medium">{title}</h3>
       <div className="mt-3 flex gap-5">
         <p className="font-title text-4xl font-extrabold text-primary">

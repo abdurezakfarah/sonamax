@@ -9,7 +9,7 @@ export default function ThankYouPage() {
 
   return (
     <main className="flex h-[calc(100vh-5rem)] flex-col items-center justify-center">
-      <section className="flex max-w-md flex-col items-center justify-center text-center">
+      <section className="flex md:max-w-md flex-col items-center justify-center text-center">
         <Icons.circleCheck
           className="size-20 text-primary"
           strokeWidth={1.68}

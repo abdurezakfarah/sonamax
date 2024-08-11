@@ -78,7 +78,7 @@ export function ContactForm({
   }, [form]);
 
   return (
-    <section className="mx-auto w-fit rounded-md bg-foreground px-2 py-4">
+    <section className="mx-auto w-full md:w-fit rounded-md bg-foreground px-2 py-4">
       {title && (
         <h3 className="mx-auto mb-5 w-fit font-title text-xl font-semibold uppercase">
           {title}
