@@ -1329,11 +1329,11 @@ export type PostPageQueryResult = {
   }>;
 } | null;
 // Variable: servicesPageQuery
-// Query:    *[_type == "service"][0..20]{     _id,      title,      "slug": slug.current,      description,       icon {         name      }   } 
+// Query:    *[_type == "service"][0..20]{     _id,      title,      slug,      description,       icon {         name      }   } 
 export type ServicesPageQueryResult = Array<{
   _id: string;
   title: string;
-  slug: string;
+  slug: Slug;
   description: string;
   icon: {
     name: string | null;
@@ -1354,7 +1354,7 @@ export type ServicePageQueryResult = {
   }>;
 } | null;
 // Variable: sitemapQuery
-// Query:  {  "pages": *[_type == "page"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
+// Query:  {  "pages": *[_type == "page" && _id!="home"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
 export type SitemapQueryResult = {
   pages: Array<{
     slug: string | null;

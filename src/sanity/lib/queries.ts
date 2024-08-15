@@ -338,7 +338,7 @@ export const servicesPageQuery = groq`
    *[_type == "service"][0..20]{
      _id,
       title,
-      "slug": slug.current,
+      slug,
       description, 
       icon { 
         name
