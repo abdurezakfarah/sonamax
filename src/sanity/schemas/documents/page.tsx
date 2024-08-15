@@ -101,15 +101,16 @@ export const page = defineType({
   ],
   preview: {
     select: {
+      id: "_id",
       title: "title",
       media: "ogImage",
       createdAt: "_createdAt",
     },
-    prepare({ title, media, createdAt }) {
+    prepare({ title, media, createdAt, id }) {
       const formattedCreatedAt = moment(createdAt).format("LLL");
       return {
         title,
-        media,
+        media: id == "home" ? <Icons.house /> : media,
         subtitle: formattedCreatedAt,
       };
     },
