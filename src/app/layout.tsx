@@ -36,9 +36,8 @@ export const metadata: Metadata = {
     "online marketing solutions",
   ],
   referrer: "origin-when-cross-origin",
-  creator: "Abdurezak Farah",
-  publisher: "Abdurezak Farah",
-
+  creator: "Sonamax marketing",
+  publisher: "Sonamax marketing",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -146,6 +145,7 @@ export const metadata: Metadata = {
   ],
   other: {
     "msapplication-TileColor": "#000000",
+    'impact-site-verification': '63814138-710c-4dea-b365-2f66850f0f4c'
   },
 };
 
