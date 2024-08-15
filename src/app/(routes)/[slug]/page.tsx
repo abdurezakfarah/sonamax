@@ -1,4 +1,5 @@
 import { Content } from "@/components/content";
+import { PageHeader } from "@/components/page-header";
 import { siteConfig } from "@/config/site";
 import { client } from "@/sanity/lib/client";
 import { pageQuery } from "@/sanity/lib/queries";
@@ -62,14 +63,8 @@ export default async function Page({ params: { slug } }: PageProps) {
 
   return (
     <main className="relative">
+      {page.showTitle && <PageHeader title={page.title} />}
       {page.content && <Content content={page.content} />}
-      {/* <PageHeader title={page.title} /> */}
-      {/* <article
-        id="page-body"
-        className="container mx-auto h-full max-w-5xl flex-1 overflow-auto py-7 md:px-7"
-      >
-        {page?.body && <PortableText value={page.body} />}
-      </article> */}
     </main>
   );
 }

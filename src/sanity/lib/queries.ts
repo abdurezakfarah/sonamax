@@ -4,6 +4,7 @@ export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0]{
   _id,
   title,
+  showTitle,
   "slug": slug.current,
   "ogImage": ogImage.asset->url,
   "createdAt": _createdAt,
