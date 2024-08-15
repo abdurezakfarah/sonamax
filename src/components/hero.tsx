@@ -1,31 +1,17 @@
 import heroBannerImage from "@/assets/images/backgrounds/hero-banner.jpg";
 import { cn } from "@/lib/utilities/cn";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { callToActionVariants } from "./cta";
 import { Icons } from "./icons";
 
-interface HeroProps {
-  title: string;
-  text: string;
-  primaryCta: {
-    text: string;
-    url: string;
-  };
-  secondaryCta: {
-    text: string;
-    url: string;
-  } | null;
-  socialLinks: Array<{
-    _key: string;
-    name: string;
-    url: string;
-    icon: {
-      name: string | null;
-    };
-  }> | null;
-}
+type Content = NonNullable<PageQueryResult>["content"];
+
+// Extract the type of hero block from the custom blocks
+type HeroBlock = Extract<ItemType<NonNullable<Content>>, { _type: "hero" }>;
 
 export function Hero({
   title,
@@ -33,9 +19,9 @@ export function Hero({
   primaryCta,
   secondaryCta,
   socialLinks,
-}: HeroProps) {
+}: HeroBlock) {
   return (
-    <div className="relative z-10 flex h-[calc(100vh-5rem)] items-center justify-between lg:pl-8">
+    <section className="relative z-10 flex h-[calc(100vh-5rem)] items-center justify-between lg:pl-8">
       <Image
         src={heroBannerImage}
         alt="Hero banner image"
@@ -81,29 +67,39 @@ export function Hero({
             )}
           </div>
         </section>
-        <aside className="absolute right-20 top-8 hidden origin-[right_top] -translate-y-1/2 -rotate-90 items-center md:flex">
-          <h2 className="relative mb-0 mr-14 w-fit pr-5 font-semibold uppercase text-white before:absolute before:left-full before:top-1/2 before:h-px before:w-7 before:-translate-y-1/2 before:bg-white before:content-['']">
-            Follow us
-          </h2>
-          <ul className="inline-block">
-            {socialLinks?.map((link) => (
-              <li
-                key={link._key}
-                className="mr-2.5 inline-block [&:n0t:last-child]:mr-0"
-              >
-                <Link
-                  href={link.url}
-                  title={link.name}
-                  className="inline-flex size-8 items-center justify-center rounded-full border text-center text-white [&>svg]:size-3.5"
-                >
-                  <Icon icon={link.icon.name as string} />
-                  <span className="sr-only">Follow us on:{link.name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </aside>
+        {socialLinks && <SocialLinks socialLinks={socialLinks} />}
       </div>
-    </div>
+    </section>
+  );
+}
+
+type SocialLinksProps = {
+  socialLinks: HeroBlock["socialLinks"];
+};
+
+function SocialLinks({ socialLinks }: SocialLinksProps) {
+  return (
+    <aside className="absolute right-20 top-8 hidden origin-[right_top] -translate-y-1/2 -rotate-90 items-center md:flex">
+      <h2 className="relative mb-0 mr-14 w-fit pr-5 font-semibold uppercase text-white before:absolute before:left-full before:top-1/2 before:h-px before:w-7 before:-translate-y-1/2 before:bg-white before:content-['']">
+        Follow us
+      </h2>
+      <ul className="inline-block">
+        {socialLinks?.map((link) => (
+          <li
+            key={link._key}
+            className="mr-2.5 inline-block [&:n0t:last-child]:mr-0"
+          >
+            <Link
+              href={link.url}
+              title={link.name}
+              className="inline-flex size-8 items-center justify-center rounded-full border text-center text-white [&>svg]:size-3.5"
+            >
+              <Icon icon={link.icon.name!} />
+              <span className="sr-only">Follow us on:{link.name}</span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </aside>
   );
 }

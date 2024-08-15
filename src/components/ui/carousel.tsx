@@ -285,14 +285,14 @@ const CarouselNext = React.forwardRef<
 });
 CarouselNext.displayName = "CarouselNext";
 
-const CarouselDots = () => {
+const CarouselDots = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const { selectedIndex, scrollSnaps, handleDotButtonClick } = useCarousel();
   return (
-    <div className="mt-5 flex">
+    <div {...props} className={cn("mt-8 flex lg:mt-12", props.className)}>
       <div className="mx-auto flex gap-x-3.5">
         {scrollSnaps.map((_, index) => (
           <DotButton
-            key={index}
+            key={`crousel-dot-${index}`}
             onClick={() => handleDotButtonClick(index)}
             aria-label="scrollsnap button"
             className={cn(

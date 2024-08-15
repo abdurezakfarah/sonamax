@@ -1,24 +1,26 @@
 import faqBgImage from "@/assets/images/backgrounds/faq.jpg";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { kebabify } from "@/lib/utilities/kebabify";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 import Image from "next/image";
 
-interface FAQProps {
-  title: string;
-  faq: Array<{
-    _key: string;
-    question: string;
-    answer: string;
-  }>;
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-export function FAQ({ title, faq }: FAQProps) {
+type Faq = Extract<
+  ItemType<NonNullable<Content>>,
+  { _type: "faq" }
+>;
+
+export function FAQ({_type, title, faq }: Faq) {
   return (
-    <div className="container relative flex items-stretch gap-10 py-16 max-md:flex-col">
+    <section id={kebabify(_type)} className="container relative flex items-stretch gap-10 py-10 lg:py-16 max-md:flex-col">
       <Image
         src={faqBgImage}
         alt="faq bg image"
@@ -64,6 +66,6 @@ export function FAQ({ title, faq }: FAQProps) {
           ))}
         </Accordion>
       </div>
-    </div>
+    </section>
   );
 }

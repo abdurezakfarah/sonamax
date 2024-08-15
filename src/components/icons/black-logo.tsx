@@ -1,8 +1,10 @@
 import { cn } from "@/lib/utilities/cn";
+import { CustomIconProps } from "@/types";
+import * as React from "react";
 
-interface LogoProps extends React.HTMLAttributes<HTMLOrSVGElement> {}
 
-export function BlackLogo(props: LogoProps) {
+
+export function BlackLogo(props: CustomIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

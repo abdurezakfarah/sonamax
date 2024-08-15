@@ -1,0 +1,1 @@
+Whenever you run sanity typegen, create a type called Content which

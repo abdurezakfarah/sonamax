@@ -68,6 +68,252 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Testimonials = {
+  _type: "testimonials";
+  title: string;
+  testimonials: Array<{
+    text: string;
+    authorName: string;
+    authorProfession: string;
+    authorImage: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      alt?: string;
+      _type: "customImage";
+    };
+    _type: "testimony";
+    _key: string;
+  }>;
+};
+
+export type Services = {
+  _type: "services";
+  title: string;
+  services: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "service";
+  }>;
+};
+
+export type Projects = {
+  _type: "projects";
+  title: string;
+  text: string;
+  projects: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "project";
+  }>;
+};
+
+export type Pricing = {
+  _type: "pricing";
+  title: string;
+  plans: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "price";
+  }>;
+};
+
+export type OverviewCards = {
+  _type: "overviewCards";
+  title: string;
+  overViewCards: Array<
+    {
+      _key: string;
+    } & OverviewCard
+  >;
+};
+
+export type Hero = {
+  _type: "hero";
+  title: string;
+  text: string;
+  primaryCta: Cta;
+  secondaryCta?: Cta;
+};
+
+export type Faq = {
+  _type: "faq";
+  title: string;
+  faq: Array<{
+    question: string;
+    answer: string;
+    _type: "faq";
+    _key: string;
+  }>;
+};
+
+export type Contact = {
+  _type: "contact";
+  title: string;
+  text: string;
+  cta: Array<
+    {
+      _key: string;
+    } & Cta
+  >;
+};
+
+export type ContactBannerTwo = {
+  _type: "contactBannerTwo";
+  text: string;
+  primaryCta: Cta;
+  secondaryCta?: Cta;
+};
+
+export type ContactBannerOne = {
+  _type: "contactBannerOne";
+  text: string;
+  cta: Cta;
+};
+
+export type ChooseUs = {
+  _type: "chooseUs";
+  title: string;
+  text: string;
+  features: Array<string>;
+  box: {
+    title: string;
+    text: string;
+  };
+};
+
+export type Blog = {
+  _type: "blog";
+  title: string;
+  blog: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "post";
+  }>;
+};
+
+export type About = {
+  _type: "about";
+  videoUrl: string;
+  title: string;
+  text: string;
+  stats: Array<
+    {
+      _key: string;
+    } & Stats
+  >;
+  primaryCta: Cta;
+  secondaryCta: Cta;
+};
+
+export type CustomBlocks = Array<
+  | {
+      body: Array<
+        | {
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?:
+              | "normal"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "h5"
+              | "h6"
+              | "blockquote";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<
+              | ({
+                  _key: string;
+                } & HighlightColor)
+              | ({
+                  _key: string;
+                } & TextColor)
+            >;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }
+        | {
+            asset?: {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+            };
+            hotspot?: SanityImageHotspot;
+            crop?: SanityImageCrop;
+            caption?: string;
+            alt?: string;
+            _type: "customImage";
+            _key: string;
+          }
+        | ({
+            _key: string;
+          } & Callout)
+      >;
+      _type: "editor";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & About)
+  | ({
+      _key: string;
+    } & Blog)
+  | ({
+      _key: string;
+    } & ChooseUs)
+  | ({
+      _key: string;
+    } & ContactBannerOne)
+  | ({
+      _key: string;
+    } & ContactBannerTwo)
+  | ({
+      _key: string;
+    } & Contact)
+  | ({
+      _key: string;
+    } & Faq)
+  | ({
+      _key: string;
+    } & Hero)
+  | ({
+      _key: string;
+    } & OverviewCards)
+  | ({
+      _key: string;
+    } & Pricing)
+  | ({
+      _key: string;
+    } & Projects)
+  | ({
+      _key: string;
+    } & Services)
+  | ({
+      _key: string;
+    } & Testimonials)
+>;
+
 export type OverviewCard = {
   _type: "overviewCard";
   icon: Icon;
@@ -79,6 +325,14 @@ export type Stats = {
   _type: "stats";
   title: string;
   value: number;
+};
+
+export type Cta = {
+  _type: "cta";
+  title?: string;
+  text: string;
+  icon?: Icon;
+  url: string;
 };
 
 export type Richtext = Array<{
@@ -110,11 +364,14 @@ export type Editor = Array<
       }>;
       style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
       listItem?: "bullet" | "number";
-      markDefs?: Array<{
-        href?: string;
-        _type: "link";
-        _key: string;
-      }>;
+      markDefs?: Array<
+        | ({
+            _key: string;
+          } & HighlightColor)
+        | ({
+            _key: string;
+          } & TextColor)
+      >;
       level?: number;
       _type: "block";
       _key: string;
@@ -226,7 +483,7 @@ export type Price = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  currency: "KES" | "$" | "\u20AC" | "\xA3";
+  currency: "C$" | "$" | "\u20AC" | "\xA3" | "KES";
   price: number;
   billingCycle: string;
   billingRate: string;
@@ -384,8 +641,9 @@ export type Page = {
   _updatedAt: string;
   _rev: string;
   title: string;
-  slug: Slug;
-  description: string;
+  showTitle?: boolean;
+  slug?: Slug;
+  description?: string;
   keywords?: string;
   ogImage?: {
     asset?: {
@@ -400,147 +658,7 @@ export type Page = {
     alt?: string;
     _type: "customImage";
   };
-  body: Editor;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
-};
-
-export type Home = {
-  _id: string;
-  _type: "home";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  hero: {
-    title: string;
-    text: string;
-    primaryCta: Cta;
-    secondaryCta?: Cta;
-  };
-  services: {
-    title: string;
-    services: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "service";
-    }>;
-  };
-  about: {
-    videoUrl: string;
-    title: string;
-    text: string;
-    stats: Array<
-      {
-        _key: string;
-      } & Stats
-    >;
-    primaryCta: Cta;
-    secondaryCta: Cta;
-  };
-  workingProcess: {
-    title: string;
-    processes: Array<
-      {
-        _key: string;
-      } & OverviewCard
-    >;
-  };
-  projects: {
-    title: string;
-    text: string;
-    projects: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "project";
-    }>;
-  };
-  testimonials: {
-    title: string;
-    testimonials: Array<{
-      text: string;
-      authorName: string;
-      authorProfession: string;
-      authorImage: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        caption?: string;
-        alt?: string;
-        _type: "customImage";
-      };
-      _type: "testimony";
-      _key: string;
-    }>;
-  };
-  chooseUs: {
-    title: string;
-    text: string;
-    features: Array<string>;
-    box: {
-      title: string;
-      text: string;
-    };
-  };
-  pricing: {
-    title: string;
-    plans: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "price";
-    }>;
-  };
-  contactBannerOne: {
-    text: string;
-    cta: Cta;
-  };
-  contact: {
-    title: string;
-    text: string;
-    cta: Array<
-      {
-        _key: string;
-      } & Cta
-    >;
-  };
-  blog: {
-    title: string;
-    blog: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "post";
-    }>;
-  };
-  faq: {
-    title: string;
-    faq: Array<{
-      question: string;
-      answer: string;
-      _type: "faq";
-      _key: string;
-    }>;
-  };
-  contactBannerTwo: {
-    text: string;
-    primaryCta: Cta;
-    secondaryCta?: Cta;
-  };
+  content?: CustomBlocks;
 };
 
 export type CustomImage = {
@@ -557,12 +675,10 @@ export type CustomImage = {
   alt?: string;
 };
 
-export type Cta = {
-  _type: "cta";
-  title?: string;
-  text: string;
-  icon?: Icon;
-  url: string;
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
 };
 
 export type Configuration = {
@@ -591,6 +707,24 @@ export type Configuration = {
   }>;
 };
 
+export type HighlightColor = {
+  _type: "highlightColor";
+  label?: string;
+  value?: string;
+};
+
+export type TextColor = {
+  _type: "textColor";
+  label?: string;
+  value?: string;
+};
+
+export type SimplerColor = {
+  _type: "simplerColor";
+  label?: string;
+  value?: string;
+};
+
 export type Icon = {
   _type: "icon";
   name?: string;
@@ -602,8 +736,23 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | Testimonials
+  | Services
+  | Projects
+  | Pricing
+  | OverviewCards
+  | Hero
+  | Faq
+  | Contact
+  | ContactBannerTwo
+  | ContactBannerOne
+  | ChooseUs
+  | Blog
+  | About
+  | CustomBlocks
   | OverviewCard
   | Stats
+  | Cta
   | Richtext
   | Editor
   | Callout
@@ -620,208 +769,457 @@ export type AllSanitySchemaTypes =
   | Author
   | Category
   | Page
-  | Slug
-  | Home
   | CustomImage
-  | Cta
+  | Slug
   | Configuration
+  | HighlightColor
+  | TextColor
+  | SimplerColor
   | Icon;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: pageQuery
-// Query:   *[_type == "page" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    "ogImage": ogImage.asset->url,    "createdAt": _createdAt,    description,    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],    body,    "plainText": pt::text(body),    "keywords": string::split(keywords, ","),    _updatedAt,  }  
+// Query:   *[_type == "page" && slug.current == $slug][0]{  _id,  title,  "slug": slug.current,  "ogImage": ogImage.asset->url,  "createdAt": _createdAt,  description,  content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  "keywords": string::split(keywords, ","),  _updatedAt,  }  
 export type PageQueryResult = {
   _id: string;
   title: string;
-  slug: string;
+  slug: string | null;
   ogImage: string | null;
   createdAt: string;
-  description: string;
-  headings: Array<never>;
-  body: Editor;
-  plainText: string;
+  description: string | null;
+  content: Array<
+    | {
+        _key: string;
+        _type: "about";
+        videoUrl: string;
+        title: string;
+        text: string;
+        stats: Array<
+          {
+            _key: string;
+          } & Stats
+        >;
+        primaryCta: Cta;
+        secondaryCta: Cta;
+      }
+    | {
+        _key: string;
+        _type: "blog";
+        title: string;
+        blog: Array<{
+          _id: string;
+          title: string;
+          slug: string;
+          image: string | null;
+          plainText: string;
+          publishedAt: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "chooseUs";
+        title: string;
+        text: string;
+        features: Array<string>;
+        box: {
+          title: string;
+          text: string;
+        };
+      }
+    | {
+        _key: string;
+        _type: "contact";
+        title: string;
+        text: string;
+        cta: Array<
+          {
+            _key: string;
+          } & Cta
+        >;
+      }
+    | {
+        _key: string;
+        _type: "contactBannerOne";
+        text: string;
+        cta: Cta;
+      }
+    | {
+        _key: string;
+        _type: "contactBannerTwo";
+        text: string;
+        primaryCta: Cta;
+        secondaryCta?: Cta;
+      }
+    | {
+        body: Array<
+          | ({
+              _key: string;
+            } & Callout)
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?:
+                | "blockquote"
+                | "h1"
+                | "h2"
+                | "h3"
+                | "h4"
+                | "h5"
+                | "h6"
+                | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<
+                | ({
+                    _key: string;
+                  } & HighlightColor)
+                | ({
+                    _key: string;
+                  } & TextColor)
+              >;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              caption?: string;
+              alt?: string;
+              _type: "customImage";
+              _key: string;
+            }
+        >;
+        _type: "editor";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "faq";
+        title: string;
+        faq: Array<{
+          question: string;
+          answer: string;
+          _type: "faq";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        title: string;
+        text: string;
+        primaryCta: Cta;
+        secondaryCta: Cta | null;
+        socialLinks: Array<{
+          _key: string;
+          name: string;
+          url: string;
+          icon: {
+            name: string | null;
+          };
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "overviewCards";
+        title: string;
+        overViewCards: Array<
+          {
+            _key: string;
+          } & OverviewCard
+        >;
+      }
+    | {
+        _key: string;
+        _type: "pricing";
+        title: string;
+        plans: Array<{
+          _id: string;
+          title: string;
+          text: string;
+          currency: "$" | "\xA3" | "\u20AC" | "C$" | "KES";
+          price: number;
+          billingRate: string;
+          billingCycle: string;
+          features: Array<{
+            _key: string;
+            text: string;
+            isIncluded: boolean;
+          }>;
+          url: string | null;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "projects";
+        title: string;
+        text: string;
+        projects: Array<{
+          _id: string;
+          image: string | null;
+          title: string;
+          category: string;
+          slug: string;
+          date: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "services";
+        title: string;
+        services: Array<{
+          _id: string;
+          title: string;
+          slug: Slug;
+          description: string;
+          icon: {
+            name: string | null;
+          };
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "testimonials";
+        title: string;
+        testimonials: Array<{
+          authorName: string;
+          authorProfession: string;
+          authorImage: string | null;
+          text: string;
+          _key: string;
+        }>;
+      }
+  > | null;
   keywords: Array<string> | null;
   _updatedAt: string;
 } | null;
 // Variable: homePageQuery
-// Query:   *[_type == "home"][0]{    hero {      title,      text,      primaryCta {        text,        url      },      secondaryCta {        text,        url      },      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    services {      title,      services[]->{        _id,        title,        "slug": slug.current,        description,         icon {          name        }      }    },    about {      videoUrl,      title,       text,       stats[]{        _key,        value,        title      },      primaryCta {        text,         url,         icon {          name,        }      },      secondaryCta {        title,        text,         url,         icon {          name        }      }    },    workingProcess {      title,       processes[] {        _key,        text,         title,        icon {          name        }      }    },    projects {      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    testimonials {      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key     }   },    chooseUs,   pricing {     title,     plans[]->{       _id,       title,       text,       currency,       price,       billingRate,       billingCycle,       features[]{         _key,         text,         isIncluded       },       url     }   },   contactBannerOne {    text,    cta {      text,       icon {        name      },      url    }  },   contact {    title,    text,    cta[] {      _key,      title,      text,       icon {              name      },      url    }  },   blog {    title,     blog[]->{      _id,      title,      "slug": slug.current,      "image": coverImage.asset->url,      "plainText": pt::text(body),      publishedAt     }   },   faq {    title,    faq[]{      _key,      question,      answer    }  },   contactBannerTwo {    text,     primaryCta {      text,       icon {        name      },      url    },     secondaryCta {      text,       icon {        name      },      url    }  }  }
+// Query:  *[_type == "page" && _id == "home"][0]{  content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  _updatedAt}
 export type HomePageQueryResult = {
-  hero: {
-    title: string;
-    text: string;
-    primaryCta: {
-      text: string;
-      url: string;
-    };
-    secondaryCta: {
-      text: string;
-      url: string;
-    } | null;
-    socialLinks: Array<{
-      _key: string;
-      name: string;
-      url: string;
-      icon: {
-        name: string | null;
-      };
-    }> | null;
-  };
-  services: {
-    title: string;
-    services: Array<{
-      _id: string;
-      title: string;
-      slug: string;
-      description: string;
-      icon: {
-        name: string | null;
-      };
-    }>;
-  };
-  about: {
-    videoUrl: string;
-    title: string;
-    text: string;
-    stats: Array<{
-      _key: string;
-      value: number;
-      title: string;
-    }>;
-    primaryCta: {
-      text: string;
-      url: string;
-      icon: {
-        name: string | null;
-      } | null;
-    };
-    secondaryCta: {
-      title: string | null;
-      text: string;
-      url: string;
-      icon: {
-        name: string | null;
-      } | null;
-    };
-  };
-  workingProcess: {
-    title: string;
-    processes: Array<{
-      _key: string;
-      text: string;
-      title: string;
-      icon: {
-        name: string | null;
-      };
-    }>;
-  };
-  projects: {
-    title: string;
-    text: string;
-    projects: Array<{
-      _id: string;
-      image: string | null;
-      title: string;
-      category: string;
-      slug: string;
-      date: string;
-    }>;
-  };
-  testimonials: {
-    title: string;
-    testimonials: Array<{
-      authorName: string;
-      authorProfession: string;
-      authorImage: string | null;
-      text: string;
-      _key: string;
-    }>;
-  };
-  chooseUs: {
-    title: string;
-    text: string;
-    features: Array<string>;
-    box: {
-      title: string;
-      text: string;
-    };
-  };
-  pricing: {
-    title: string;
-    plans: Array<{
-      _id: string;
-      title: string;
-      text: string;
-      currency: "$" | "\xA3" | "\u20AC" | "KES";
-      price: number;
-      billingRate: string;
-      billingCycle: string;
-      features: Array<{
+  content: Array<
+    | {
         _key: string;
+        _type: "about";
+        videoUrl: string;
+        title: string;
         text: string;
-        isIncluded: boolean;
-      }>;
-      url: string | null;
-    }>;
-  };
-  contactBannerOne: {
-    text: string;
-    cta: {
-      text: string;
-      icon: {
-        name: string | null;
-      } | null;
-      url: string;
-    };
-  };
-  contact: {
-    title: string;
-    text: string;
-    cta: Array<{
-      _key: string;
-      title: string | null;
-      text: string;
-      icon: {
-        name: string | null;
-      } | null;
-      url: string;
-    }>;
-  };
-  blog: {
-    title: string;
-    blog: Array<{
-      _id: string;
-      title: string;
-      slug: string;
-      image: string | null;
-      plainText: string;
-      publishedAt: string;
-    }>;
-  };
-  faq: {
-    title: string;
-    faq: Array<{
-      _key: string;
-      question: string;
-      answer: string;
-    }>;
-  };
-  contactBannerTwo: {
-    text: string;
-    primaryCta: {
-      text: string;
-      icon: {
-        name: string | null;
-      } | null;
-      url: string;
-    };
-    secondaryCta: {
-      text: string;
-      icon: {
-        name: string | null;
-      } | null;
-      url: string;
-    } | null;
-  };
+        stats: Array<
+          {
+            _key: string;
+          } & Stats
+        >;
+        primaryCta: Cta;
+        secondaryCta: Cta;
+      }
+    | {
+        _key: string;
+        _type: "blog";
+        title: string;
+        blog: Array<{
+          _id: string;
+          title: string;
+          slug: string;
+          image: string | null;
+          plainText: string;
+          publishedAt: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "chooseUs";
+        title: string;
+        text: string;
+        features: Array<string>;
+        box: {
+          title: string;
+          text: string;
+        };
+      }
+    | {
+        _key: string;
+        _type: "contact";
+        title: string;
+        text: string;
+        cta: Array<
+          {
+            _key: string;
+          } & Cta
+        >;
+      }
+    | {
+        _key: string;
+        _type: "contactBannerOne";
+        text: string;
+        cta: Cta;
+      }
+    | {
+        _key: string;
+        _type: "contactBannerTwo";
+        text: string;
+        primaryCta: Cta;
+        secondaryCta?: Cta;
+      }
+    | {
+        body: Array<
+          | ({
+              _key: string;
+            } & Callout)
+          | {
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?:
+                | "blockquote"
+                | "h1"
+                | "h2"
+                | "h3"
+                | "h4"
+                | "h5"
+                | "h6"
+                | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<
+                | ({
+                    _key: string;
+                  } & HighlightColor)
+                | ({
+                    _key: string;
+                  } & TextColor)
+              >;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }
+          | {
+              asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              caption?: string;
+              alt?: string;
+              _type: "customImage";
+              _key: string;
+            }
+        >;
+        _type: "editor";
+        _key: string;
+      }
+    | {
+        _key: string;
+        _type: "faq";
+        title: string;
+        faq: Array<{
+          question: string;
+          answer: string;
+          _type: "faq";
+          _key: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        title: string;
+        text: string;
+        primaryCta: Cta;
+        secondaryCta: Cta | null;
+        socialLinks: Array<{
+          _key: string;
+          name: string;
+          url: string;
+          icon: {
+            name: string | null;
+          };
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "overviewCards";
+        title: string;
+        overViewCards: Array<
+          {
+            _key: string;
+          } & OverviewCard
+        >;
+      }
+    | {
+        _key: string;
+        _type: "pricing";
+        title: string;
+        plans: Array<{
+          _id: string;
+          title: string;
+          text: string;
+          currency: "$" | "\xA3" | "\u20AC" | "C$" | "KES";
+          price: number;
+          billingRate: string;
+          billingCycle: string;
+          features: Array<{
+            _key: string;
+            text: string;
+            isIncluded: boolean;
+          }>;
+          url: string | null;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "projects";
+        title: string;
+        text: string;
+        projects: Array<{
+          _id: string;
+          image: string | null;
+          title: string;
+          category: string;
+          slug: string;
+          date: string;
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "services";
+        title: string;
+        services: Array<{
+          _id: string;
+          title: string;
+          slug: Slug;
+          description: string;
+          icon: {
+            name: string | null;
+          };
+        }>;
+      }
+    | {
+        _key: string;
+        _type: "testimonials";
+        title: string;
+        testimonials: Array<{
+          authorName: string;
+          authorProfession: string;
+          authorImage: string | null;
+          text: string;
+          _key: string;
+        }>;
+      }
+  > | null;
+  _updatedAt: string;
 } | null;
 // Variable: footerQuery
 // Query:   *[_type == "configuration"][0]{  socialLinks[]{    _key,    name,    url,    icon {      name    }  },  footer[]{    _key,    title,    links[]{      _key,      title,      url    }  }}
@@ -959,7 +1357,7 @@ export type ServicePageQueryResult = {
 // Query:  {  "pages": *[_type == "page"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
 export type SitemapQueryResult = {
   pages: Array<{
-    slug: string;
+    slug: string | null;
     _createdAt: string;
   }>;
   blog: Array<{

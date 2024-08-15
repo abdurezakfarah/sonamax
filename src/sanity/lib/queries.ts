@@ -2,33 +2,21 @@ import { groq } from "next-sanity";
 
 export const pageQuery = groq`
   *[_type == "page" && slug.current == $slug][0]{
-    _id,
-    title,
-    "slug": slug.current,
-    "ogImage": ogImage.asset->url,
-    "createdAt": _createdAt,
-    description,
-    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],
-    body,
-    "plainText": pt::text(body),
-    "keywords": string::split(keywords, ","),
-    _updatedAt,
-  }
-  `;
-
-export const homePageQuery = groq`
-  *[_type == "home" && _id == 'home'][0]{
-    hero {
+  _id,
+  title,
+  "slug": slug.current,
+  "ogImage": ogImage.asset->url,
+  "createdAt": _createdAt,
+  description,
+  content[]{
+    ...,
+    _type == "hero" => {
+      _key,
+      _type,
       title,
       text,
-      primaryCta {
-        text,
-        url
-      },
-      secondaryCta {
-        text,
-        url
-      },
+      primaryCta,
+      secondaryCta,
       "socialLinks": *[_type == "configuration"][0]{
         socialLinks[]{
           _key,
@@ -40,55 +28,23 @@ export const homePageQuery = groq`
         }
       }.socialLinks
     },
-    services {
+    _type == "services" => {
+      _type,
+      _key,
       title,
       services[]->{
         _id,
         title,
-        "slug": slug.current,
+        slug,
         description, 
         icon {
           name
         }
       }
     },
-    about {
-      videoUrl,
-      title, 
-      text, 
-      stats[]{
-        _key,
-        value,
-        title
-      },
-      primaryCta {
-        text, 
-        url, 
-        icon {
-          name,
-        }
-      },
-      secondaryCta {
-        title,
-        text, 
-        url, 
-        icon {
-          name
-        }
-      }
-    },
-    workingProcess {
-      title, 
-      processes[] {
-        _key,
-        text, 
-        title,
-        icon {
-          name
-        }
-      }
-    },
-    projects {
+    _type == "projects" => {
+      _key,
+      _type,
       title, 
       text,
       projects[]-> {
@@ -100,7 +56,9 @@ export const homePageQuery = groq`
         date
       }
     },
-    testimonials {
+    _type == "testimonials" => {
+      _key,
+      _type,
       title, 
       testimonials[]{
         authorName,
@@ -108,87 +66,146 @@ export const homePageQuery = groq`
         "authorImage": authorImage.asset->.url,
         text,
         _key
-     }
-   }, 
-   chooseUs,
-   pricing {
-     title,
-     plans[]->{
-       _id,
-       title,
-       text,
-       currency,
-       price,
-       billingRate,
-       billingCycle,
-       features[]{
-         _key,
-         text,
-         isIncluded
-       },
-       url
-     }
-   },
-   contactBannerOne {
-    text,
-    cta {
-      text, 
-      icon {
-        name
-      },
-      url
-    }
-  }, 
-  contact {
-    title,
-    text,
-    cta[] {
-      _key,
+      }
+    }, 
+    _type == "pricing" => {
+      _key, 
+      _type,
       title,
-      text, 
-      icon {      
-        name
-      },
-      url
-    }
-  }, 
-  blog {
-    title, 
-    blog[]->{
-      _id,
-      title,
-      "slug": slug.current,
-      "image": coverImage.asset->url,
-      "plainText": pt::text(body),
-      publishedAt
-     }
-   },
-   faq {
-    title,
-    faq[]{
-      _key,
-      question,
-      answer
-    }
-  }, 
-  contactBannerTwo {
-    text, 
-    primaryCta {
-      text, 
-      icon {
-        name
-      },
-      url
+      plans[]->{
+        _id,
+        title,
+        text,
+        currency,
+        price,
+        billingRate,
+        billingCycle,
+        features[]{
+          _key,
+          text,
+          isIncluded
+        },
+        url
+      }
     },
-     secondaryCta {
-      text, 
-      icon {
-        name
-      },
-      url
-    }
+    _type == "blog" => {
+      _key,
+      _type,
+      title, 
+      blog[]->{
+        _id,
+        title,
+        "slug": slug.current,
+        "image": coverImage.asset->url,
+        "plainText": pt::text(body),
+        publishedAt
+      }
+    },
+  },
+  "keywords": string::split(keywords, ","),
+  _updatedAt,
   }
-  }
+  `;
+
+export const homePageQuery = groq`
+ *[_type == "page" && _id == "home"][0]{
+  content[]{
+    ...,
+    _type == "hero" => {
+      _key,
+      _type,
+      title,
+      text,
+      primaryCta,
+      secondaryCta,
+      "socialLinks": *[_type == "configuration"][0]{
+        socialLinks[]{
+          _key,
+          name,
+          url,
+          icon {
+            name
+          }
+        }
+      }.socialLinks
+    },
+    _type == "services" => {
+      _type,
+      _key,
+      title,
+      services[]->{
+        _id,
+        title,
+        slug,
+        description, 
+        icon {
+          name
+        }
+      }
+    },
+    _type == "projects" => {
+      _key,
+      _type,
+      title, 
+      text,
+      projects[]-> {
+        _id,
+        "image": coverImage.asset->.url,
+        title,
+        "category": category->.name,
+        "slug": slug.current,
+        date
+      }
+    },
+    _type == "testimonials" => {
+      _key,
+      _type,
+      title, 
+      testimonials[]{
+        authorName,
+        authorProfession,
+        "authorImage": authorImage.asset->.url,
+        text,
+        _key
+      }
+    }, 
+    _type == "pricing" => {
+      _key, 
+      _type,
+      title,
+      plans[]->{
+        _id,
+        title,
+        text,
+        currency,
+        price,
+        billingRate,
+        billingCycle,
+        features[]{
+          _key,
+          text,
+          isIncluded
+        },
+        url
+      }
+    },
+    _type == "blog" => {
+      _key,
+      _type,
+      title, 
+      blog[]->{
+        _id,
+        title,
+        "slug": slug.current,
+        "image": coverImage.asset->url,
+        "plainText": pt::text(body),
+        publishedAt
+      }
+    },
+  },
+  _updatedAt
+}
+
 `;
 
 export const footerQuery = groq`
@@ -346,7 +363,7 @@ export const servicePageQuery = groq`
 
 export const sitemapQuery = groq`
  {
-  "pages": *[_type == "page"]{
+  "pages": *[_type == "page" && _id!="home"]{
     "slug": slug.current,
     "_createdAt": _createdAt
   },

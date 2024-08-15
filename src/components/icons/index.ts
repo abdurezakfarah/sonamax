@@ -1,35 +1,7 @@
-import { MdPrecisionManufacturing } from "react-icons/md";
-// import {
-//   BadgeAlert,
-//   Briefcase,
-//   Check,
-//   ChevronLeft,
-//   ChevronRight,
-//   CircleCheck,
-//   Clipboard,
-//   Code,
-//   Command,
-//   Filter,
-//   Highlighter,
-//   Info,
-//   Menu,
-//   Moon,
-//   Rss,
-//   Skull,
-//   Star,
-//   SunMedium,
-//   Tags,
-//   TriangleAlert,
-//   User,
-//   Users,
-//   X
-// } from "lucide-react";
-
 import {
   ArrowRight,
   ArrowUpRight,
   BadgeAlert,
-  Banknote,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -44,7 +16,6 @@ import {
   Handshake,
   Highlighter,
   House,
-  Info,
   Mail,
   MapPin,
   Menu,
@@ -59,16 +30,35 @@ import {
   User,
   X,
 } from "lucide-react";
+
 import {
   IoLogoFacebook,
   IoLogoInstagram,
   IoLogoTwitter,
   IoLogoWhatsapp,
 } from "react-icons/io5";
+
 import { Logo } from "./logo";
 
-import { MdCategory, MdRssFeed, MdSupportAgent } from "react-icons/md";
+import {
+  MdOutlineCategory,
+  MdOutlineConfirmationNumber,
+  MdOutlineContactPage,
+  MdOutlineFactCheck,
+  MdOutlineInfo,
+  MdOutlinePayments,
+  MdOutlineQuiz,
+  MdOutlineRecordVoiceOver,
+  MdOutlineScreenshotMonitor,
+  MdOutlineTextFields,
+  MdOutlineViewCozy,
+  MdRssFeed,
+  MdSupportAgent,
+} from "react-icons/md";
+
 import { BlackLogo } from "./black-logo";
+
+import FlexNoWrap from "./flex-no-wrap";
 
 export type Icon = (typeof Icons)[keyof typeof Icons];
 
@@ -95,7 +85,7 @@ export const Icons = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   fileDown: FileDown,
-  category: MdCategory,
+  category: MdOutlineCategory,
   arrowRight: ArrowRight,
   code: Code,
   badgeAlert: BadgeAlert,
@@ -104,15 +94,24 @@ export const Icons = {
   house: House,
   supportAgent: MdSupportAgent,
   folderCheck: FolderCheck,
-  banknote: Banknote,
+  payments: MdOutlinePayments,
   rssFeed: MdRssFeed,
   tags: Tags,
   user: User,
   circleHelp: CircleHelp,
   cog: Cog,
   section: Section,
-  info: Info, 
+  info: MdOutlineInfo,
   circleCheck: CircleCheck,
   triangleAlert: TriangleAlert,
-  skull: Skull
+  skull: Skull,
+  factCheck: MdOutlineFactCheck,
+  confirmationNumber: MdOutlineConfirmationNumber,
+  contactPage: MdOutlineContactPage,
+  quiz: MdOutlineQuiz,
+  screenshotMonitor: MdOutlineScreenshotMonitor,
+  flexNoWrap: FlexNoWrap,
+  viewCozy: MdOutlineViewCozy,
+  recordVoiceOver: MdOutlineRecordVoiceOver,
+  textField: MdOutlineTextFields
 };

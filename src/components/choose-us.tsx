@@ -2,20 +2,22 @@ import chooseOneBgImage from "@/assets/images/backgrounds/choose-1.jpg";
 import chooseBgImage from "@/assets/images/backgrounds/choose-us.jpg";
 import Image from "next/image";
 import { Icon, Icons } from "./icons";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
+import { kebabify } from "@/lib/utilities/kebabify";
 
-interface ChooseUsProps {
-  title: string;
-  text: string;
-  features: Array<string>;
-  box: {
-    title: string;
-    text: string;
-  };
-}
 
-export function ChooseUs({ title, text, features, box }: ChooseUsProps) {
+type Content = NonNullable<PageQueryResult>["content"];
+
+type ChooseUs = Extract<
+  ItemType<NonNullable<Content>>,
+  { _type: "chooseUs" }
+>;
+
+
+export function ChooseUs({_type, title, text, features, box }: ChooseUs) {
   return (
-    <section className="relative py-14">
+    <section id={kebabify(_type)} className="relative py-10 lg:py-16">
       <Image
         src={chooseBgImage}
         alt="dark bg image"

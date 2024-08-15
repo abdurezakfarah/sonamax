@@ -3,26 +3,18 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "./contact-form";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/sanity/sanity.types";
 
-interface Cta {
-  _key: string;
-  title: string | null;
-  text: string;
-  icon: {
-    name: string | null;
-  } | null;
-  url: string;
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-interface Contact {
-  title: string;
-  text: string;
-  cta: Array<Cta>;
-}
+type Contact = Extract<ItemType<NonNullable<Content>>, { _type: "contact" }>;
+
+
 
 export function Contact({ title, text, cta: ctas }: Contact) {
   return (
-    <section id="contact" className="relative py-14">
+    <section id="contact" className="relative py-16">
       <Image
         src={chooseBgImage}
         alt="dark bg image"
@@ -51,6 +43,10 @@ export function Contact({ title, text, cta: ctas }: Contact) {
     </section>
   );
 }
+
+
+type Cta = ItemType<Contact["cta"]>
+
 
 function ActionCard({ icon, title, text, url }: Cta) {
   return (

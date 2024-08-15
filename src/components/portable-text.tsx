@@ -7,7 +7,6 @@ import {
 } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-
 import slugify from "slugify";
 import { Callout } from "./callout";
 
@@ -33,7 +32,6 @@ const portableTextComponents: PortableTextComponents = {
         className="bg-muted my-8 rounded-md border transition-colors"
       />
     ),
-
 
     callout: ({ value }) => {
       return (
@@ -98,7 +96,7 @@ const portableTextComponents: PortableTextComponents = {
     h2: ({ children, value }) => (
       <h2
         id={slugify(toPlainText(value))}
-        className="mt-10 scroll-m-20 border-b pb-1 font-title text-3xl font-semibold tracking-tight first:mt-0"
+        className="mt-10 scroll-m-20 border-b pb-1 font-title text-3xl font-semibold leading-[1.2] tracking-tight first:mt-0"
       >
         {children}
       </h2>

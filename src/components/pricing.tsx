@@ -4,35 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
+import { kebabify } from "@/lib/utilities/kebabify";
 
-interface Price {
-  _id: string;
-  title: string;
-  text: string;
-  currency: "$" | "\xA3" | "\u20AC" | "KES";
-  price: number;
-  billingRate: string;
-  billingCycle: string;
-  features: Array<{
-    _key: string;
-    text: string;
-    isIncluded: boolean;
-  }>;
-  url: string | null;
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-interface PricingProps {
-  title: string;
-  plans: Price[];
-}
+type Pricing = Extract<ItemType<NonNullable<Content>>, { _type: "pricing" }>;
 
-export function Pricing({ title, plans }: PricingProps) {
+
+
+export function Pricing({ _type, title, plans }: Pricing) {
   return (
-    <section className="container mt-8 py-8">
-      <h2 className="mb-10 text-balance text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
+    <section id={kebabify(_type)} className="container py-10 lg:py-16">
+      <h2 className="text-balance text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
         {title}
       </h2>
-      <div className="flex flex-wrap justify-center gap-x-10 gap-y-7">
+      <div className="mt-10 flex flex-wrap justify-center gap-x-10 gap-y-7 lg:mt-16">
         {plans.map((plan) => (
           <Price key={plan._id} {...plan} />
         ))}
@@ -40,6 +28,10 @@ export function Pricing({ title, plans }: PricingProps) {
     </section>
   );
 }
+
+
+type Price = ItemType<Pricing["plans"]>
+
 
 function Price({
   title,
@@ -52,7 +44,7 @@ function Price({
   url,
 }: Price) {
   return (
-    <article className="lg:flex-1 w-fit rounded-md bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2">
+    <article className="w-fit rounded-md bg-foreground p-7 shadow-sm transition duration-300 hover:-translate-y-2 lg:flex-1">
       <h3 className="font-title text-xl font-medium">{title}</h3>
       <div className="mt-3 flex gap-5">
         <p className="font-title text-4xl font-extrabold text-primary">
@@ -64,7 +56,7 @@ function Price({
           <p>{billingCycle}</p>
         </div>
       </div>
-      <div className="w-[calc(100% + 1.75rem)] bg-black relative z-0 -mx-7 mt-7 p-1 px-7">
+      <div className="w-[calc(100% + 1.75rem)] relative z-0 -mx-7 mt-7 bg-black p-1 px-7">
         <Image
           src={shapeBgImage}
           alt="shape bg image"

@@ -1,11 +1,6 @@
-import { Icons } from "@/components/icons";
-import type { BlockDecoratorProps } from "sanity";
+import { defineType } from "sanity";
 
-function HighlightDecorator({ children }: BlockDecoratorProps) {
-  return <mark style={{ backgroundColor: "yellow" }}>{children}</mark>;
-}
-
-export const editor = {
+export const editor = defineType({
   name: "editor",
   title: "Editor",
   type: "array",
@@ -29,11 +24,16 @@ export const editor = {
           { title: "Code", value: "code" },
           { title: "Underline", value: "underline" },
           { title: "Strike", value: "strike-through" },
+        ],
+        annotations: [
+          // {
+          //   type: "stats",
+          // },
           {
-            title: "Highlight",
-            value: "highlight",
-            icon: <Icons.highlighter className="size-3" />,
-            component: HighlightDecorator,
+            type: "highlightColor",
+          },
+          {
+            type: "textColor",
           },
         ],
       },
@@ -42,13 +42,9 @@ export const editor = {
       type: "customImage",
       title: "Image",
     },
-    // {
-    //   type: "customCode",
-    //   title: "Code",
-    // },
     {
       type: "callout",
       title: "Callout",
     },
   ],
-};
+});

@@ -4,39 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 
-interface ContactBannerOne {
-  text: string;
-  cta: {
-    text: string;
-    icon: {
-      name: string | null;
-    } | null;
-    url: string;
-  };
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-interface ContactBannerTwo {
-  text: string;
-  primaryCta: {
-    text: string;
-    icon: {
-      name: string | null;
-    } | null;
-    url: string;
-  };
-  secondaryCta: {
-    text: string;
-    icon: {
-      name: string | null;
-    } | null;
-    url: string;
-  } | null;
-}
+type ContactBannerOne = Extract<ItemType<NonNullable<Content>>, { _type: "contactBannerOne" }>;
+type ContactBannerTwo = Extract<ItemType<NonNullable<Content>>, { _type: "contactBannerTwo" }>;
+
 
 export function ContactBannerOne({ text, cta }: ContactBannerOne) {
   return (
-    <section className="container mb-7">
+    <section className="container py-10 lg:py-16">
       <div className="relative flex flex-col justify-between gap-4 p-7 md:flex-row md:items-center">
         <Image
           src={contactBannerBg}
@@ -66,7 +45,7 @@ export function ContactBannerTwo({
   secondaryCta,
 }: ContactBannerTwo) {
   return (
-    <section className="container relative flex flex-col justify-between gap-7 bg-primary px-7 py-16 before:absolute before:inset-0 md:flex-row md:items-center">
+    <section className="container relative flex flex-col justify-between gap-7 bg-primary px-7 py-10 before:absolute before:inset-0 md:flex-row md:items-center lg:py-16">
       <h2 className="font-title text-3xl font-semibold uppercase text-white md:max-w-sm">
         {text}
       </h2>

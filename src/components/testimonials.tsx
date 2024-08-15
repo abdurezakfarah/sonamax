@@ -8,23 +8,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 
-interface Testimonial {
-  authorName: string;
-  authorProfession: string;
-  authorImage: string | null;
-  text: string;
-  _key: string;
-}
-interface TestimonialsProps {
-  title: string;
-  testimonials: Testimonial[];
-}
 
-export function Testimonials({ title, testimonials }: TestimonialsProps) {
+type Content = NonNullable<PageQueryResult>["content"];
+
+type Testimonials = Extract<ItemType<NonNullable<Content>>, { _type: "testimonials" }>;
+
+
+
+export function Testimonials({ title, testimonials }: Testimonials) {
   return (
-    <section id="testimonials" className="container mt-8 py-8">
-      <h2 className="mb-10 text-balance text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
+    <section
+      id="testimonials"
+      className="container pb-12 pt-10 lg:pb-20 lg:pt-16"
+    >
+      <h2 className="text-balance text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
         {title}
       </h2>
       <Carousel
@@ -32,7 +32,7 @@ export function Testimonials({ title, testimonials }: TestimonialsProps) {
           align: "start",
           loop: true,
         }}
-        className="mx-auto mt-10 w-10/12"
+        className="mx-auto mt-10 w-10/12 lg:mt-16"
       >
         <CarouselContent>
           {testimonials.map((testimonial) => (
@@ -51,6 +51,12 @@ export function Testimonials({ title, testimonials }: TestimonialsProps) {
     </section>
   );
 }
+
+
+
+
+type Testimonial = ItemType<Testimonials["testimonials"]>
+
 
 function Testimonial({
   text,

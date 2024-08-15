@@ -1,3 +1,6 @@
+import { kebabify } from "@/lib/utilities/kebabify";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import readingTime from "reading-time";
@@ -11,24 +14,14 @@ import {
 } from "./ui/carousel";
 import Moment from "./ui/moment";
 
-interface Post {
-  _id: string;
-  title: string;
-  slug: string;
-  image: string | null;
-  plainText: string;
-  publishedAt: string;
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-interface BlogProps {
-  title: string;
-  blog: Post[];
-}
+type Blog = Extract<ItemType<NonNullable<Content>>, { _type: "blog" }>;
 
-export function Blog({ title, blog }: BlogProps) {
+export function Blog({ _type, title, blog }: Blog) {
   return (
-    <section className="relative py-14">
-      <h2 className="mb-5 text-balance px-5 font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
+    <section id={kebabify(_type)} className="relative py-10 lg:py-16">
+      <h2 className="text-balance px-5 text-center font-title text-2xl font-bold uppercase sm:text-3xl md:text-4xl lg:text-5xl">
         {title}
       </h2>
       <Carousel
@@ -36,7 +29,7 @@ export function Blog({ title, blog }: BlogProps) {
           align: "start",
           loop: true,
         }}
-        className="mx-auto w-full  md:w-10/12"
+        className="mx-auto mt-10 w-full md:w-10/12 lg:mt-16"
       >
         <CarouselContent>
           {blog.map((post) => (
@@ -54,6 +47,10 @@ export function Blog({ title, blog }: BlogProps) {
     </section>
   );
 }
+
+
+type Post = ItemType<Blog["blog"]>
+
 
 function Post({ title, slug, image, plainText, publishedAt }: Post) {
   return (

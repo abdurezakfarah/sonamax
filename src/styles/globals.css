@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --primary: 10 95% 57%;
+    --primary: 10 95% 57%; /* #fa4c29 */
     --primary-content: 0 0% 100%;
     --primary-dark: 10 96% 47%;
     --primary-light: 10 95% 67%;

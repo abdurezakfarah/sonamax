@@ -12,7 +12,7 @@ import {
 
 import { cn } from "@/lib/utilities/cn";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
 import { Menubar } from "./menubar";
@@ -33,9 +33,9 @@ export function Header() {
     }
   });
 
-  const handleMenuToggle = () => {
+  const handleMenuToggle = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
-  };
+  }, []) ;
 
   const HEADER_ANIMATION = isHeaderHidden ? "hidden" : "visible";
 

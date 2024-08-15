@@ -1,5 +1,4 @@
-import { PageHeader } from "@/components/page-header";
-import { PortableText } from "@/components/portable-text";
+import { Content } from "@/components/content";
 import { siteConfig } from "@/config/site";
 import { client } from "@/sanity/lib/client";
 import { pageQuery } from "@/sanity/lib/queries";
@@ -35,16 +34,16 @@ export async function generateMetadata({
     openGraph: {
       type: "article",
       locale: "en_US",
-      url: `${siteConfig.url}/page/${slug}`,
-      title: page.title,
-      description: page.description,
-      images: page.ogImage || undefined,
+      url: `${siteConfig.url}/${slug}`,
+      title: page.title ?? undefined,
+      description: page.description ?? undefined,
+      images: page.ogImage ?? undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: page.title,
-      description: page.description,
-      images: page.ogImage || undefined,
+      title: page.title ?? undefined,
+      description: page.description ?? undefined,
+      images: page.ogImage ?? undefined,
     },
     keywords: page.keywords,
   };
@@ -63,13 +62,14 @@ export default async function Page({ params: { slug } }: PageProps) {
 
   return (
     <main className="relative">
-      <PageHeader title={page.title} />
-      <article
+      {page.content && <Content content={page.content} />}
+      {/* <PageHeader title={page.title} /> */}
+      {/* <article
         id="page-body"
         className="container mx-auto h-full max-w-5xl flex-1 overflow-auto py-7 md:px-7"
       >
         {page?.body && <PortableText value={page.body} />}
-      </article>
+      </article> */}
     </main>
   );
 }

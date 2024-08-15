@@ -14,8 +14,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <section className="flex h-[calc(100vh-5rem)] flex-col items-center justify-center py-7">
-      <div className="flex flex-col items-center justify-center text-center md:max-w-md">
+    <section className="flex  h-screen flex-col items-center justify-center py-7">
+      <div className="flex  flex-col items-center justify-center text-center md:max-w-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"

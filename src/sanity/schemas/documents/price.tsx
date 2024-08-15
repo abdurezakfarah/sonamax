@@ -4,7 +4,7 @@ export const price: SchemaTypeDefinition = {
   name: "price",
   title: "Pricing",
   type: "document",
-  icon: Icons.banknote,
+  icon: Icons.payments,
   fields: [
     {
       name: "title",

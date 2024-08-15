@@ -9,34 +9,15 @@ import * as React from "react";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
 import { NumberTicker, type NumberTickerProps } from "./ui/number-ticker";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 
-interface Stats {
-  _key: string;
-  value: number;
-  title: string;
-}
 
-interface AboutProps {
-  videoUrl: string;
-  title: string;
-  text: string;
-  stats: Stats[];
-  primaryCta: {
-    text: string;
-    url: string;
-    icon: {
-      name: string | null;
-    } | null;
-  };
-  secondaryCta: {
-    title: string | null;
-    text: string;
-    url: string;
-    icon: {
-      name: string | null;
-    } | null;
-  };
-}
+
+type Content = NonNullable<PageQueryResult>["content"]
+
+type AboutProps = Extract<ItemType<NonNullable<Content>>, {_type: "about"}>
+
 
 export function About({
   videoUrl,
@@ -162,6 +143,7 @@ interface StatsProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   tickerProps?: Omit<NumberTickerProps, "value">;
   titleProps?: React.HTMLAttributes<HTMLHeadingElement>;
+  titleElement?: 'h3' | 'h4' | 'h5' | 'h6'
 }
 
 function Stats({
@@ -169,8 +151,10 @@ function Stats({
   title,
   tickerProps,
   titleProps,
+  titleElement: Title = "h3",
   ...props
 }: StatsProps) {
+  
   return (
     <hgroup {...props}>
       <NumberTicker
@@ -179,7 +163,7 @@ function Stats({
         className="font-title text-xl font-medium text-primary md:text-2xl lg:text-3xl"
         {...tickerProps}
       />
-      <h3
+      <Title
         {...titleProps}
         className={cn(
           "font-title text-white lg:text-xl",
@@ -187,7 +171,7 @@ function Stats({
         )}
       >
         {title}
-      </h3>
+      </Title>
     </hgroup>
   );
 }

@@ -1,5 +1,5 @@
-import type { ObjectDefinition, Rule } from "sanity";
-export const stats: ObjectDefinition = {
+import { type Rule, defineType } from "sanity";
+export const stats = defineType({
   type: "object",
   name: "stats",
   fields: [
@@ -32,4 +32,4 @@ export const stats: ObjectDefinition = {
       };
     },
   },
-};
+});

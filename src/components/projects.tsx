@@ -1,3 +1,6 @@
+import dotsBgImage from "@/assets/images/backgrounds/dots.jpg";
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Icons } from "./icons";
@@ -10,28 +13,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-
-import dotsBgImage from "@/assets/images/backgrounds/dots.jpg";
 import Moment from "./ui/moment";
+import { kebabify } from "@/lib/utilities/kebabify";
 
-interface Project {
-  _id: string;
-  image: string | null;
-  title: string;
-  category: string;
-  slug: string;
-  date: string;
-}
+type Content = NonNullable<PageQueryResult>["content"];
 
-interface ProjectsProps {
-  title: string;
-  text: string;
-  projects: Project[];
-}
+type Projects = Extract<ItemType<NonNullable<Content>>, { _type: "projects" }>;
 
-export function Projects({ title, text, projects }: ProjectsProps) {
+export function Projects({_type, title, text, projects }: Projects) {
   return (
-    <section className="relative py-14">
+    <section id={kebabify(_type)} className="relative py-10 lg:py-16">
       <Image
         src={dotsBgImage}
         alt="Dots banner image"
@@ -40,7 +31,7 @@ export function Projects({ title, text, projects }: ProjectsProps) {
         className="pointer-events-none -z-10 object-cover"
       />
       <div className="container z-10">
-        <hgroup className="mb-10 max-w-lg space-y-4">
+        <hgroup className="mb-10 max-w-2xl space-y-4 lg:px-8">
           <div className="relative flex items-stretch py-3">
             <div
               className="h-[calc(100% + 0.75rem)] origin=[top_center] -my-3 w-2 bg-primary"
@@ -61,7 +52,10 @@ export function Projects({ title, text, projects }: ProjectsProps) {
         >
           <CarouselContent>
             {projects.map((project) => (
-              <CarouselItem key={project._id} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem
+                key={project._id}
+                className="md:basis-1/2 lg:basis-1/3"
+              >
                 <div className="p-1">
                   <Project {...project} />
                 </div>
@@ -76,6 +70,8 @@ export function Projects({ title, text, projects }: ProjectsProps) {
     </section>
   );
 }
+
+type Project = ItemType<Projects["projects"]>;
 
 function Project({ title, slug, category, date, image }: Project) {
   return (

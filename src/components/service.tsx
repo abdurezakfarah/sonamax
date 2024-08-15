@@ -1,15 +1,13 @@
+import { PageQueryResult } from "@/sanity/sanity.types";
+import { ItemType } from "@/types";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
-interface Service {
-  _id: string;
-  title: string;
-  slug: string;
-  description: string;
-  icon: {
-    name: string | null;
-  };
-}
+type Content = NonNullable<PageQueryResult>["content"];
+
+type Services = Extract<ItemType<NonNullable<Content>>, { _type: "services" }>;
+
+type Service = ItemType<Services["services"]>;
 
 export function Service({ title, slug, description, icon }: Service) {
   return (
@@ -32,7 +30,7 @@ export function Service({ title, slug, description, icon }: Service) {
         </p>
       </hgroup>
 
-      <Link href={`/services/${slug}`} className="absolute inset-0">
+      <Link href={`/services/${slug.current}`} className="absolute inset-0">
         <span className="sr-only">Learn more about {title}</span>
       </Link>
     </article>

@@ -7,14 +7,10 @@ export const structure: StructureResolver = (S) =>
     .title("Content")
     .items([
       /* PAGES */
-      S.listItem()
-        .title("Pages")
-        .icon(Icons.stickyNote)
-        .child(
-           S.documentList()
-           .title("Pages")
-           .filter("_type == 'home' || _type == 'page'")
-        ),
+      S.listItem().title("Pages").icon(Icons.stickyNote).child(
+        // S.document().schemaType("page").id("home"),
+        S.documentTypeList("page").title("Pages"),
+      ),
 
       /* DOCUMENT TYPES EXCEPT THE EXCLUDED ONES */
       ...S.documentTypeListItems().filter(
