@@ -39,7 +39,7 @@ export const editor = defineType({
       },
     },
     {
-      type: "customImage",
+      type: "image",
       title: "Image",
     },
     {

@@ -1,16 +1,14 @@
 import chooseBgImage from "@/assets/images/backgrounds/choose-us.jpg";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "./contact-form";
-import { ItemType } from "@/types";
-import { PageQueryResult } from "@/sanity/sanity.types";
 
 type Content = NonNullable<PageQueryResult>["content"];
 
 type Contact = Extract<ItemType<NonNullable<Content>>, { _type: "contact" }>;
-
-
 
 export function Contact({ title, text, cta: ctas }: Contact) {
   return (
@@ -44,9 +42,7 @@ export function Contact({ title, text, cta: ctas }: Contact) {
   );
 }
 
-
-type Cta = ItemType<Contact["cta"]>
-
+type Cta = ItemType<Contact["cta"]>;
 
 function ActionCard({ icon, title, text, url }: Cta) {
   return (

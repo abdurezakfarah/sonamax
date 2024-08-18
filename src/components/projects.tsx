@@ -1,6 +1,7 @@
 import dotsBgImage from "@/assets/images/backgrounds/dots.jpg";
-import { PageQueryResult } from "@/sanity/sanity.types";
+import { kebabify } from "@/lib/utilities/kebabify";
 import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 import { Icons } from "./icons";
@@ -14,13 +15,12 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Moment from "./ui/moment";
-import { kebabify } from "@/lib/utilities/kebabify";
 
 type Content = NonNullable<PageQueryResult>["content"];
 
 type Projects = Extract<ItemType<NonNullable<Content>>, { _type: "projects" }>;
 
-export function Projects({_type, title, text, projects }: Projects) {
+export function Projects({ _type, title, text, projects }: Projects) {
   return (
     <section id={kebabify(_type)} className="relative py-10 lg:py-16">
       <Image

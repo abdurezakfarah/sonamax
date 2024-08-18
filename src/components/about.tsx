@@ -2,6 +2,8 @@ import aboutBgImage from "@/assets/images/backgrounds/about.jpg";
 import aboutOneBgImage from "@/assets/images/resources/about1-1.jpg";
 import aboutTwoBgImage from "@/assets/images/resources/about1-2.jpg";
 import { cn } from "@/lib/utilities/cn";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,15 +11,10 @@ import * as React from "react";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
 import { NumberTicker, type NumberTickerProps } from "./ui/number-ticker";
-import { PageQueryResult } from "@/sanity/sanity.types";
-import { ItemType } from "@/types";
 
+type Content = NonNullable<PageQueryResult>["content"];
 
-
-type Content = NonNullable<PageQueryResult>["content"]
-
-type AboutProps = Extract<ItemType<NonNullable<Content>>, {_type: "about"}>
-
+type AboutProps = Extract<ItemType<NonNullable<Content>>, { _type: "about" }>;
 
 export function About({
   videoUrl,
@@ -143,7 +140,7 @@ interface StatsProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   tickerProps?: Omit<NumberTickerProps, "value">;
   titleProps?: React.HTMLAttributes<HTMLHeadingElement>;
-  titleElement?: 'h3' | 'h4' | 'h5' | 'h6'
+  titleElement?: "h3" | "h4" | "h5" | "h6";
 }
 
 function Stats({
@@ -154,7 +151,6 @@ function Stats({
   titleElement: Title = "h3",
   ...props
 }: StatsProps) {
-  
   return (
     <hgroup {...props}>
       <NumberTicker

@@ -1,3 +1,5 @@
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 import { Icons } from "./icons";
 import {
@@ -8,15 +10,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { PageQueryResult } from "@/sanity/sanity.types";
-import { ItemType } from "@/types";
-
 
 type Content = NonNullable<PageQueryResult>["content"];
 
-type Testimonials = Extract<ItemType<NonNullable<Content>>, { _type: "testimonials" }>;
-
-
+type Testimonials = Extract<
+  ItemType<NonNullable<Content>>,
+  { _type: "testimonials" }
+>;
 
 export function Testimonials({ title, testimonials }: Testimonials) {
   return (
@@ -52,11 +52,7 @@ export function Testimonials({ title, testimonials }: Testimonials) {
   );
 }
 
-
-
-
-type Testimonial = ItemType<Testimonials["testimonials"]>
-
+type Testimonial = ItemType<Testimonials["testimonials"]>;
 
 function Testimonial({
   text,

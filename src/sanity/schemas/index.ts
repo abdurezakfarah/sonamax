@@ -23,7 +23,6 @@ import { tag } from "./documents/tag";
 import { callout } from "./objects/callout";
 import { cta } from "./objects/cta";
 import { customBlock } from "./objects/custom-blocks";
-import { customImage } from "./objects/custom-image";
 import { editor } from "./objects/editor";
 import { overviewCard } from "./objects/overview-card";
 import { richText } from "./objects/richtext";
@@ -37,7 +36,6 @@ type Schema = {
 export const schema: Schema = {
   types: [
     configuration,
-    // home,
     page,
     post,
     author,
@@ -47,7 +45,7 @@ export const schema: Schema = {
     project,
     price,
     /* OBJECT TYPES */
-    customImage,
+
     callout,
     editor,
     richText,
@@ -92,7 +90,12 @@ export const singletonTypes = new Set(["configuration", "home"]);
 
 // SCHEMA TYPES (basically documents) TO EXCLUDE FROM LEFT SIDEBAR
 // because they will manually added in the strucure builder
-export const excludedListTypes = new Set(["configuration", "home", "page"]);
+export const excludedListTypes = new Set([
+  "configuration",
+  "home",
+  "page",
+  "media.tag", // this schema is from the media tool
+]);
 
 //TODO: below are some docs that are no longer in use & waiting to be deleted:
 // 1) services

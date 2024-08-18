@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "404 - Pag not found",
+    absolute: "404 - Page not found",
   },
 };
 

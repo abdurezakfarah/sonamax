@@ -313,7 +313,7 @@ const testimonialsSection: FieldObject = {
             },
             {
               name: "authorImage",
-              type: "customImage",
+              type: "image",
               title: "Author image",
               validation: (rule: Rule) =>
                 rule.required().error("Author image is required"),

@@ -89,7 +89,7 @@ export const page = defineType({
     defineField({
       name: "ogImage",
       title: "Opengraph Image",
-      type: "customImage",
+      type: "image",
       group: "media",
       hidden: ({ parent }) => parent._id == "home",
     }),

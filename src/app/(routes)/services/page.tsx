@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header";
 import { Service } from "@/components/service";
 import { client } from "@/sanity/lib/client";
 import { servicesPageQuery } from "@/sanity/lib/queries";
-import { ServicesPageQueryResult } from "@/sanity/sanity.types";
+import { ServicesPageQueryResult } from "@/types/sanity.types";
 import { Metadata } from "next";
 import Image from "next/image";
 

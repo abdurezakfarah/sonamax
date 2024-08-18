@@ -1,21 +1,16 @@
 import chooseOneBgImage from "@/assets/images/backgrounds/choose-1.jpg";
 import chooseBgImage from "@/assets/images/backgrounds/choose-us.jpg";
+import { kebabify } from "@/lib/utilities/kebabify";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 import { Icon, Icons } from "./icons";
-import { PageQueryResult } from "@/sanity/sanity.types";
-import { ItemType } from "@/types";
-import { kebabify } from "@/lib/utilities/kebabify";
-
 
 type Content = NonNullable<PageQueryResult>["content"];
 
-type ChooseUs = Extract<
-  ItemType<NonNullable<Content>>,
-  { _type: "chooseUs" }
->;
+type ChooseUs = Extract<ItemType<NonNullable<Content>>, { _type: "chooseUs" }>;
 
-
-export function ChooseUs({_type, title, text, features, box }: ChooseUs) {
+export function ChooseUs({ _type, title, text, features, box }: ChooseUs) {
   return (
     <section id={kebabify(_type)} className="relative py-10 lg:py-16">
       <Image

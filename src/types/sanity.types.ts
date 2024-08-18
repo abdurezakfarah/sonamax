@@ -39,28 +39,6 @@ export type SanityImageDimensions = {
   aspectRatio?: number;
 };
 
-export type SanityFileAsset = {
-  _id: string;
-  _type: "sanity.fileAsset";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  originalFilename?: string;
-  label?: string;
-  title?: string;
-  description?: string;
-  altText?: string;
-  sha1hash?: string;
-  extension?: string;
-  mimeType?: string;
-  size?: number;
-  assetId?: string;
-  uploadId?: string;
-  path?: string;
-  url?: string;
-  source?: SanityAssetSourceData;
-};
-
 export type Geopoint = {
   _type: "geopoint";
   lat?: number;
@@ -84,9 +62,7 @@ export type Testimonials = {
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      caption?: string;
-      alt?: string;
-      _type: "customImage";
+      _type: "image";
     };
     _type: "testimony";
     _key: string;
@@ -261,9 +237,7 @@ export type CustomBlocks = Array<
             };
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
-            caption?: string;
-            alt?: string;
-            _type: "customImage";
+            _type: "image";
             _key: string;
           }
         | ({
@@ -385,9 +359,7 @@ export type Editor = Array<
       };
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
-      caption?: string;
-      alt?: string;
-      _type: "customImage";
+      _type: "image";
       _key: string;
     }
   | ({
@@ -417,6 +389,276 @@ export type Callout = {
     _type: "block";
     _key: string;
   }>;
+};
+
+export type Price = {
+  _id: string;
+  _type: "price";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  currency: "C$" | "$" | "\u20AC" | "\xA3" | "KES";
+  price: number;
+  billingCycle: string;
+  billingRate: string;
+  text: string;
+  features: Array<{
+    isIncluded: boolean;
+    text: string;
+    _type: "feature";
+    _key: string;
+  }>;
+  url?: string;
+};
+
+export type Tag = {
+  _id: string;
+  _type: "tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+};
+
+export type Configuration = {
+  _id: string;
+  _type: "configuration";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  socialLinks: Array<{
+    name: string;
+    icon: Icon;
+    url: string;
+    _type: "socialLink";
+    _key: string;
+  }>;
+  footer: {
+    sections: Array<{
+      title: string;
+      links: Array<
+        {
+          _key: string;
+        } & Link
+      >;
+      _type: "section";
+      _key: string;
+    }>;
+    footerNote: string;
+  };
+};
+
+export type Link = {
+  _type: "link";
+  type: "url" | "email" | "phone" | "reference" | "pdf";
+  label?: string;
+  reference?:
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "page";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "post";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "service";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "project";
+      };
+  url?: string;
+  email?: string;
+  phone?: string;
+  pdf?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+    };
+    _type: "file";
+  };
+};
+
+export type SanityFileAsset = {
+  _id: string;
+  _type: "sanity.fileAsset";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  originalFilename?: string;
+  label?: string;
+  title?: string;
+  description?: string;
+  altText?: string;
+  sha1hash?: string;
+  extension?: string;
+  mimeType?: string;
+  size?: number;
+  assetId?: string;
+  uploadId?: string;
+  path?: string;
+  url?: string;
+  source?: SanityAssetSourceData;
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  date: string;
+  category: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "category";
+  };
+  coverImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  client?: string;
+  website?: string;
+  location?: string;
+  overview: Editor;
+};
+
+export type Service = {
+  _id: string;
+  _type: "service";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  description: string;
+  icon: Icon;
+  overview: Editor;
+};
+
+export type Post = {
+  _id: string;
+  _type: "post";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  excerpt: string;
+  keywords?: string;
+  coverImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  category?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "category";
+  };
+  tags?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "tag";
+  }>;
+  author: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "author";
+  };
+  publishedAt: string;
+  body: Editor;
+};
+
+export type Author = {
+  _id: string;
+  _type: "author";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+  image: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  twitter?: string;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name: string;
+  slug: Slug;
+};
+
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  showTitle?: boolean;
+  slug?: Slug;
+  description?: string;
+  keywords?: string;
+  ogImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  content?: CustomBlocks;
 };
 
 export type SanityImageCrop = {
@@ -476,235 +718,19 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type Price = {
+export type MediaTag = {
   _id: string;
-  _type: "price";
+  _type: "media.tag";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  currency: "C$" | "$" | "\u20AC" | "\xA3" | "KES";
-  price: number;
-  billingCycle: string;
-  billingRate: string;
-  text: string;
-  features: Array<{
-    isIncluded: boolean;
-    text: string;
-    _type: "feature";
-    _key: string;
-  }>;
-  url?: string;
-};
-
-export type Project = {
-  _id: string;
-  _type: "project";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  date: string;
-  category: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "category";
-  };
-  coverImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    alt?: string;
-    _type: "customImage";
-  };
-  client?: string;
-  website?: string;
-  location?: string;
-  overview: Editor;
-};
-
-export type Service = {
-  _id: string;
-  _type: "service";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  description: string;
-  icon: Icon;
-  overview: Editor;
-};
-
-export type Tag = {
-  _id: string;
-  _type: "tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  slug: Slug;
-};
-
-export type Post = {
-  _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  slug: Slug;
-  excerpt: string;
-  keywords?: string;
-  coverImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    alt?: string;
-    _type: "customImage";
-  };
-  category?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "category";
-  };
-  tags?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "tag";
-  }>;
-  author: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
-  };
-  publishedAt: string;
-  body: Editor;
-};
-
-export type Author = {
-  _id: string;
-  _type: "author";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  slug: Slug;
-  image: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    alt?: string;
-    _type: "customImage";
-  };
-  twitter?: string;
-};
-
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name: string;
-  slug: Slug;
-};
-
-export type Page = {
-  _id: string;
-  _type: "page";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title: string;
-  showTitle?: boolean;
-  slug?: Slug;
-  description?: string;
-  keywords?: string;
-  ogImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    alt?: string;
-    _type: "customImage";
-  };
-  content?: CustomBlocks;
-};
-
-export type CustomImage = {
-  _type: "customImage";
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  caption?: string;
-  alt?: string;
+  name?: Slug;
 };
 
 export type Slug = {
   _type: "slug";
   current: string;
   source?: string;
-};
-
-export type Configuration = {
-  _id: string;
-  _type: "configuration";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  socialLinks: Array<{
-    name: string;
-    icon: Icon;
-    url: string;
-    _type: "socialLink";
-    _key: string;
-  }>;
-  footer: Array<{
-    title: string;
-    links: Array<{
-      title: string;
-      url: string;
-      _type: "link";
-      _key: string;
-    }>;
-    _type: "section";
-    _key: string;
-  }>;
 };
 
 export type HighlightColor = {
@@ -734,7 +760,6 @@ export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
-  | SanityFileAsset
   | Geopoint
   | Testimonials
   | Services
@@ -756,22 +781,24 @@ export type AllSanitySchemaTypes =
   | Richtext
   | Editor
   | Callout
+  | Price
+  | Tag
+  | Configuration
+  | Link
+  | SanityFileAsset
+  | Project
+  | Service
+  | Post
+  | Author
+  | Category
+  | Page
   | SanityImageCrop
   | SanityImageHotspot
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
-  | Price
-  | Project
-  | Service
-  | Tag
-  | Post
-  | Author
-  | Category
-  | Page
-  | CustomImage
+  | MediaTag
   | Slug
-  | Configuration
   | HighlightColor
   | TextColor
   | SimplerColor
@@ -779,7 +806,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: pageQuery
-// Query:   *[_type == "page" && slug.current == $slug][0]{  _id,  title,  showTitle,  "slug": slug.current,  "ogImage": ogImage.asset->url,  "createdAt": _createdAt,  description,  content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  "keywords": string::split(keywords, ","),  _updatedAt,  }  
+// Query: *[_type == "page" && slug.current == $slug][0]{  _id,  title,  showTitle,  "slug": slug.current,  "ogImage": ogImage.asset->url,  "createdAt": _createdAt,  description,     content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  "keywords": string::split(keywords, ","),  _updatedAt,  }
 export type PageQueryResult = {
   _id: string;
   title: string;
@@ -894,9 +921,7 @@ export type PageQueryResult = {
               };
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
-              caption?: string;
-              alt?: string;
-              _type: "customImage";
+              _type: "image";
               _key: string;
             }
         >;
@@ -1005,7 +1030,7 @@ export type PageQueryResult = {
   _updatedAt: string;
 } | null;
 // Variable: homePageQuery
-// Query:  *[_type == "page" && _id == "home"][0]{  content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  _updatedAt}
+// Query: *[_type == "page" && _id == "home"][0]{     content[]{    ...,    _type == "hero" => {      _key,      _type,      title,      text,      primaryCta,      secondaryCta,      "socialLinks": *[_type == "configuration"][0]{        socialLinks[]{          _key,          name,          url,          icon {            name          }        }      }.socialLinks    },    _type == "services" => {      _type,      _key,      title,      services[]->{        _id,        title,        slug,        description,         icon {          name        }      }    },    _type == "projects" => {      _key,      _type,      title,       text,      projects[]-> {        _id,        "image": coverImage.asset->.url,        title,        "category": category->.name,        "slug": slug.current,        date      }    },    _type == "testimonials" => {      _key,      _type,      title,       testimonials[]{        authorName,        authorProfession,        "authorImage": authorImage.asset->.url,        text,        _key      }    },     _type == "pricing" => {      _key,       _type,      title,      plans[]->{        _id,        title,        text,        currency,        price,        billingRate,        billingCycle,        features[]{          _key,          text,          isIncluded        },        url      }    },    _type == "blog" => {      _key,      _type,      title,       blog[]->{        _id,        title,        "slug": slug.current,        "image": coverImage.asset->url,        "plainText": pt::text(body),        publishedAt      }    },  },  _updatedAt}
 export type HomePageQueryResult = {
   content: Array<
     | {
@@ -1113,9 +1138,7 @@ export type HomePageQueryResult = {
               };
               hotspot?: SanityImageHotspot;
               crop?: SanityImageCrop;
-              caption?: string;
-              alt?: string;
-              _type: "customImage";
+              _type: "image";
               _key: string;
             }
         >;
@@ -1223,7 +1246,7 @@ export type HomePageQueryResult = {
   _updatedAt: string;
 } | null;
 // Variable: footerQuery
-// Query:   *[_type == "configuration"][0]{  socialLinks[]{    _key,    name,    url,    icon {      name    }  },  footer[]{    _key,    title,    links[]{      _key,      title,      url    }  }}
+// Query: *[_type == "configuration"][0]{  socialLinks[]{    _key,    name,    url,    icon {      name    }  },  footer{  ...,  sections[]{    _key,    title,    links[]{      _key,        label,  type,  type == "reference" => {    "label": select(      defined(label) => label,      defined(reference->.title) => reference->.title,      true => "link"    ),    reference->{      _type,      "slug": slug.current    }  },  type == "pdf" => {    "url": pdf.asset->url + "?dl"  },  type == "url" => {    url  },  type == "phone" => {    "url": "tel:" + phone  },  type == "email" => {    "url": "mailto:" + email  }    }  },   }}
 export type FooterQueryResult = {
   socialLinks: Array<{
     _key: string;
@@ -1233,18 +1256,40 @@ export type FooterQueryResult = {
       name: string | null;
     };
   }>;
-  footer: Array<{
-    _key: string;
-    title: string;
-    links: Array<{
+  footer: {
+    sections: Array<{
       _key: string;
       title: string;
-      url: string;
+      links: Array<{
+        _key: string;
+        label: string | "link" | null;
+        type: "email" | "pdf" | "phone" | "reference" | "url";
+        reference:
+          | {
+              _type: "page";
+              slug: string | null;
+            }
+          | {
+              _type: "post";
+              slug: string;
+            }
+          | {
+              _type: "project";
+              slug: string;
+            }
+          | {
+              _type: "service";
+              slug: string;
+            }
+          | null;
+        url: string | null;
+      }>;
     }>;
-  }>;
+    footerNote: string;
+  };
 } | null;
 // Variable: projectsPageQuery
-// Query:   *[_type == "project"]{    _id,    "slug": slug.current,    title,    "image": coverImage.asset->url,    date,    category->{      name    },  }
+// Query: *[_type == "project"]{    _id,    "slug": slug.current,    title,    "image": coverImage.asset->url,    date,    category->{      name    },  }
 export type ProjectsPageQueryResult = Array<{
   _id: string;
   slug: string;
@@ -1256,7 +1301,7 @@ export type ProjectsPageQueryResult = Array<{
   };
 }>;
 // Variable: projectPageQuery
-// Query:  *[_type == "project" && slug.current == $slug][0]{  _id,   title,   "slug": slug.current,  date,  "image": coverImage.asset->.url,  client,  website,  location,  overview,  "projects": *[_type == "project" && _id != ^._id] | order(publishedAt desc)[0..6] {    _id,    title,    "image": coverImage.asset->.url,    "slug": slug.current,    "category": category->.name  } }
+// Query: *[_type == "project" && slug.current == $slug][0]{  _id,   title,   "slug": slug.current,  date,  "image": coverImage.asset->.url,  client,  website,  location,  overview,  "projects": *[_type == "project" && _id != ^._id] | order(publishedAt desc)[0..6] {    _id,    title,    "image": coverImage.asset->.url,    "slug": slug.current,    "category": category->.name  } }
 export type ProjectPageQueryResult = {
   _id: string;
   title: string;
@@ -1276,7 +1321,7 @@ export type ProjectPageQueryResult = {
   }>;
 } | null;
 // Variable: blogPageQuery
-// Query:   *[_type == "post"][0..20] | order(publishedAt desc){    _id,    "slug": slug.current,    title,    "image": coverImage.asset->url,    excerpt,    "plainText": pt::text(body),    publishedAt  }
+// Query: *[_type == "post"][0..20] | order(publishedAt desc){    _id,    "slug": slug.current,    title,    "image": coverImage.asset->url,    excerpt,    "plainText": pt::text(body),    publishedAt  }
 export type BlogPageQueryResult = Array<{
   _id: string;
   slug: string;
@@ -1287,7 +1332,7 @@ export type BlogPageQueryResult = Array<{
   publishedAt: string;
 }>;
 // Variable: postPageQuery
-// Query:   *[_type == "post" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    "coverImage": coverImage.asset->url,    publishedAt,    excerpt,    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],    body,    category-> {      name,      "slug": slug.current    },    tags[]->{      "slug": slug.current,      name    },    author->{      name,      twitter,      "image": image.asset->url,      "slug": slug.current    },    "plainText": pt::text(body),    "keywords": string::split(keywords, ","),    _updatedAt,    "relatedPosts": *[      _type == "post"      && _id != ^._id       && count(tags[@._ref in ^.^.tags[]._ref]) > 0    ][0..5]{      title,      "slug": slug.current,      "coverImage": coverImage.asset->url,      publishedAt,      "plainText": pt::text(body)    },    "recentPosts": *[      _type == "post"       && _id != ^._id      && !(_id in *[          _type == "post"          && _id != ^.^._id           && count(tags[@._ref in ^.^.^.tags[]._ref]) > 0        ]._id)      ] | order(publishedAt desc)[0..5]{      title,      "slug": slug.current,      "coverImage": coverImage.asset->url,      publishedAt,      "plainText": pt::text(body)    }  }  
+// Query: *[_type == "post" && slug.current == $slug][0]{    _id,    title,    "slug": slug.current,    "coverImage": coverImage.asset->url,    publishedAt,    excerpt,    "headings": body[style in ["h2", "h3", "h4", "h5", "h6"]],    body,    category-> {      name,      "slug": slug.current    },    tags[]->{      "slug": slug.current,      name    },    author->{      name,      twitter,      "image": image.asset->url,      "slug": slug.current    },    "plainText": pt::text(body),    "keywords": string::split(keywords, ","),    _updatedAt,    "relatedPosts": *[      _type == "post"      && _id != ^._id       && count(tags[@._ref in ^.^.tags[]._ref]) > 0    ][0..5]{      title,      "slug": slug.current,      "coverImage": coverImage.asset->url,      publishedAt,      "plainText": pt::text(body)    },    "recentPosts": *[      _type == "post"       && _id != ^._id      && !(_id in *[          _type == "post"          && _id != ^.^._id           && count(tags[@._ref in ^.^.^.tags[]._ref]) > 0        ]._id)      ] | order(publishedAt desc)[0..5]{      title,      "slug": slug.current,      "coverImage": coverImage.asset->url,      publishedAt,      "plainText": pt::text(body)    }  }
 export type PostPageQueryResult = {
   _id: string;
   title: string;
@@ -1330,7 +1375,7 @@ export type PostPageQueryResult = {
   }>;
 } | null;
 // Variable: servicesPageQuery
-// Query:    *[_type == "service"][0..20]{     _id,      title,      slug,      description,       icon {         name      }   } 
+// Query: *[_type == "service"][0..20]{     _id,      title,      slug,      description,       icon {         name      }   }
 export type ServicesPageQueryResult = Array<{
   _id: string;
   title: string;
@@ -1341,7 +1386,7 @@ export type ServicesPageQueryResult = Array<{
   };
 }>;
 // Variable: servicePageQuery
-// Query:   *[_type == "service" && slug.current == $slug][0]{    _id,     title,     "slug": slug.current,     description,     overview,    "services": *[_type == "service"]{      _id,      title,       "slug": slug.current    }  }
+// Query: *[_type == "service" && slug.current == $slug][0]{    _id,     title,     "slug": slug.current,     description,     overview,    "services": *[_type == "service"]{      _id,      title,       "slug": slug.current    }  }
 export type ServicePageQueryResult = {
   _id: string;
   title: string;
@@ -1355,7 +1400,7 @@ export type ServicePageQueryResult = {
   }>;
 } | null;
 // Variable: sitemapQuery
-// Query:  {  "pages": *[_type == "page" && _id!="home"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
+// Query: {  "pages": *[_type == "page" && _id!="home"]{    "slug": slug.current,    "_createdAt": _createdAt  },  "blog": *[_type == "post"]{    "slug": slug.current,    "publishedAt": publishedAt  },  "services": *[_type == "service"]{    "slug": slug.current,    _createdAt  },  "projects": *[_type == "project"]{    "slug": slug.current,    _createdAt  }}
 export type SitemapQueryResult = {
   pages: Array<{
     slug: string | null;

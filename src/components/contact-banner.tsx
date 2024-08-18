@@ -1,17 +1,22 @@
 import contactBannerBg from "@/assets/images/backgrounds/contact-banner.jpg";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
-import { PageQueryResult } from "@/sanity/sanity.types";
-import { ItemType } from "@/types";
 
 type Content = NonNullable<PageQueryResult>["content"];
 
-type ContactBannerOne = Extract<ItemType<NonNullable<Content>>, { _type: "contactBannerOne" }>;
-type ContactBannerTwo = Extract<ItemType<NonNullable<Content>>, { _type: "contactBannerTwo" }>;
-
+type ContactBannerOne = Extract<
+  ItemType<NonNullable<Content>>,
+  { _type: "contactBannerOne" }
+>;
+type ContactBannerTwo = Extract<
+  ItemType<NonNullable<Content>>,
+  { _type: "contactBannerTwo" }
+>;
 
 export function ContactBannerOne({ text, cta }: ContactBannerOne) {
   return (

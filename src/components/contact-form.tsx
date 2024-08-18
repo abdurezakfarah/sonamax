@@ -1,5 +1,5 @@
 "use client";
-import { sendContactMail } from "@/app/actions/mail/contact";
+import { sendContactMail } from "@/actions/mail/contact";
 import { cn } from "@/lib/utilities/cn";
 import {
   contactFormSchema,

@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/page-header";
 import Moment from "@/components/ui/moment";
 import { client } from "@/sanity/lib/client";
 import { blogPageQuery } from "@/sanity/lib/queries";
-import { BlogPageQueryResult } from "@/sanity/sanity.types";
+import { BlogPageQueryResult } from "@/types/sanity.types";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

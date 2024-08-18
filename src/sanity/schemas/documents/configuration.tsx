@@ -67,74 +67,64 @@ export const configuration: SchemaTypeDefinition = {
     {
       name: "footer",
       title: "Footer",
-      type: "array",
-      of: [
+      type: "object",
+      fields: [
         {
-          type: "object",
-          name: "section",
-          title: "Footer Section",
-          fields: [
+          name: "sections",
+          type: "array",
+          of: [
             {
-              name: "title",
-              title: "Title",
-              type: "string",
-              validation: (rule: Rule) => [
-                rule.required().error("Section title is required"),
-              ],
-            },
-            {
-              name: "links",
-              title: "Links",
-              type: "array",
-              of: [
+              type: "object",
+              name: "section",
+              title: "Footer Section",
+              fields: [
                 {
-                  name: "link",
-                  title: "Link",
-                  type: "object",
-                  fields: [
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                  validation: (rule: Rule) => [
+                    rule.required().error("Section title is required"),
+                  ],
+                },
+                {
+                  name: "links",
+                  title: "Links",
+                  type: "array",
+                  of: [
                     {
-                      name: "title",
-                      title: "Title",
-                      type: "string",
-                      validation: (rule: Rule) => [
-                        rule.required().error("Link title is required"),
-                      ],
-                    },
-                    {
-                      type: "url",
-                      name: "url",
+                      name: "link",
                       title: "Link",
-                      validation: (rule: Rule) =>
-                        rule
-                          .required()
-                          .error("Link is required")
-                          .uri({
-                            allowRelative: true,
-                            scheme: ["https", "http", "mailto", "tel"],
-                          }),
-                      options: {
-                        allowRelative: true,
-                      },
+                      type: "link",
                     },
+                  ],
+                  validation: (rule: Rule) => [
+                    rule.required().error("Links are required"),
                   ],
                 },
               ],
-              validation: (rule: Rule) => [
-                rule.required().error("Links are required"),
-              ],
+              preview: {
+                select: {
+                  title: "title",
+                },
+                prepare({ title }) {
+                  return {
+                    title,
+                    media: Icons.section,
+                  };
+                },
+              },
             },
           ],
-          preview: {
-            select: {
-              title: "title",
-            },
-            prepare({ title }) {
-              return {
-                title,
-                media: Icons.section,
-              };
-            },
-          },
+          validation: (rule: Rule) =>
+            rule.required().error("Footer sections are required"),
+        },
+        {
+          name: "footerNote",
+          type: "string",
+          title: "Footer note",
+          placeholder: "Eg: @2024 sonamax all rights reserved",
+          validation: (rule: Rule) =>
+            rule.required().error("Footer note is required"),
         },
       ],
       validation: (rule: Rule) => rule.required().error("Footer is required"),

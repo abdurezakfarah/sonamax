@@ -1,7 +1,7 @@
 import { Content } from "@/components/content";
 import { client } from "@/sanity/lib/client";
 import { homePageQuery } from "@/sanity/lib/queries";
-import { HomePageQueryResult } from "@/sanity/sanity.types";
+import { HomePageQueryResult } from "@/types/sanity.types";
 
 export default async function Home() {
   const homePageData = await client.fetch<HomePageQueryResult>(

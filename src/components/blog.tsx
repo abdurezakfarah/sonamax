@@ -1,6 +1,6 @@
 import { kebabify } from "@/lib/utilities/kebabify";
-import { PageQueryResult } from "@/sanity/sanity.types";
 import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 import readingTime from "reading-time";
@@ -48,9 +48,7 @@ export function Blog({ _type, title, blog }: Blog) {
   );
 }
 
-
-type Post = ItemType<Blog["blog"]>
-
+type Post = ItemType<Blog["blog"]>;
 
 function Post({ title, slug, image, plainText, publishedAt }: Post) {
   return (

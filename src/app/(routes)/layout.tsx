@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { client } from "@/sanity/lib/client";
 import { footerQuery } from "@/sanity/lib/queries";
-import { FooterQueryResult } from "@/sanity/sanity.types";
+import { FooterQueryResult } from "@/types/sanity.types";
 import React from "react";
 import { Toaster } from "sonner";
 

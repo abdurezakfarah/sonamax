@@ -1,5 +1,5 @@
-import { PageQueryResult } from "@/sanity/sanity.types";
 import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 

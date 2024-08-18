@@ -1,10 +1,9 @@
 import { Icons } from "@/components/icons";
-import { Subtitles } from "lucide-react";
 import type { Rule, SchemaTypeDefinition } from "sanity";
 
 export const author: SchemaTypeDefinition = {
   name: "author",
-  title: "Author",
+  title: "Authors",
   type: "document",
   icon: Icons.user,
   fields: [
@@ -31,7 +30,7 @@ export const author: SchemaTypeDefinition = {
     {
       name: "image",
       title: "Image",
-      type: "customImage",
+      type: "image",
       validation: (rule: Rule) => [
         rule.required().error("Author image is required"),
       ],
@@ -46,7 +45,7 @@ export const author: SchemaTypeDefinition = {
     select: {
       title: "name",
       media: "image",
-      subtitle: "twitter"
+      subtitle: "twitter",
     },
   },
 };

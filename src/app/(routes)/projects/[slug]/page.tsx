@@ -7,7 +7,7 @@ import Moment from "@/components/ui/moment";
 import { siteConfig } from "@/config/site";
 import { client } from "@/sanity/lib/client";
 import { projectPageQuery } from "@/sanity/lib/queries";
-import { ProjectPageQueryResult } from "@/sanity/sanity.types";
+import { ProjectPageQueryResult } from "@/types/sanity.types";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";

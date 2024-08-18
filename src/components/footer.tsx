@@ -5,12 +5,13 @@ import {
   newsletterFormSchema,
   NewsletterFormSchema,
 } from "@/lib/validations/newsletter-form";
-import { FooterQueryResult } from "@/sanity/sanity.types";
+import { FooterQueryResult } from "@/types/sanity.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { Icons, Icon as IconType } from "./icons";
+import { SanityLink } from "./sanity-link";
 import { Button } from "./ui/button";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
@@ -19,6 +20,8 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
   if (!footerData) {
     throw Error("Footer: no data.");
   }
+
+  const {footer: {sections: footerSections, footerNote}} = footerData
 
   return (
     <footer className="container space-y-16 bg-[#202020] pt-14 text-white">
@@ -57,7 +60,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
             ))}
           </div>
         </section>
-        {footerData.footer.map((section) => (
+        {footerSections.map((section) => (
           <section key={section._key}>
             <div className="relative flex items-stretch">
               <div className="w-1 bg-primary" aria-hidden />
@@ -71,7 +74,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
                   key={link._key}
                   className="after:content=[''] relative w-fit pb-0.5 after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-bottom-left after:scale-x-0 after:bg-primary after:transition-all after:duration-300 hover:after:scale-x-100"
                 >
-                  <Link href={link.url}>{link.title}</Link>
+                  <SanityLink link={link} />
                 </li>
               ))}
             </ul>
@@ -92,7 +95,7 @@ export function Footer({ data: footerData }: { data: FooterQueryResult }) {
         </section> */}
       </div>
       <div className="-mx-8 w-[calc(100%+4rem)] bg-[#282828] py-5">
-        <p className="text-center text-sm text-white/60">© 2024 = Sonamax</p>
+        <p className="text-center text-sm text-white/60">{footerNote}</p>
       </div>
     </footer>
   );
@@ -132,50 +135,50 @@ function Card({ Icon, title, text, href }: CardProps) {
   );
 }
 
-function NewsLetterForm() {
-  const form = useForm<NewsletterFormSchema>({
-    resolver: zodResolver(newsletterFormSchema),
-    defaultValues: {
-      email: "",
-    },
-  });
-  function onSubmit(values: NewsletterFormSchema) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+// function NewsLetterForm() {
+//   const form = useForm<NewsletterFormSchema>({
+//     resolver: zodResolver(newsletterFormSchema),
+//     defaultValues: {
+//       email: "",
+//     },
+//   });
+//   function onSubmit(values: NewsletterFormSchema) {
+//     // Do something with the form values.
+//     // ✅ This will be type-safe and validated.
+//     console.log(values);
+//   }
 
-  return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto w-full space-y-3.5"
-      >
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              {/* <FormLabel>Email</FormLabel> */}
-              <FormControl>
-                <Input
-                  className="bg-transparent"
-                  placeholder="example@email.com"
-                  {...field}
-                />
-              </FormControl>
-              {/* <FormDescription>
-                This is your public display name.
-              </FormDescription> */}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+//   return (
+//     <Form {...form}>
+//       <form
+//         onSubmit={form.handleSubmit(onSubmit)}
+//         className="mx-auto w-full space-y-3.5"
+//       >
+//         <FormField
+//           control={form.control}
+//           name="email"
+//           render={({ field }) => (
+//             <FormItem>
+//               {/* <FormLabel>Email</FormLabel> */}
+//               <FormControl>
+//                 <Input
+//                   className="bg-transparent"
+//                   placeholder="example@email.com"
+//                   {...field}
+//                 />
+//               </FormControl>
+//               {/* <FormDescription>
+//                 This is your public display name.
+//               </FormDescription> */}
+//               <FormMessage />
+//             </FormItem>
+//           )}
+//         />
 
-        <Button type="submit" className="theme-btn">
-          Subscribe now
-        </Button>
-      </form>
-    </Form>
-  );
-}
+//         <Button type="submit" className="theme-btn">
+//           Subscribe now
+//         </Button>
+//       </form>
+//     </Form>
+//   );
+// }

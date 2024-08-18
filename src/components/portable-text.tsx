@@ -23,7 +23,7 @@ export function PortableText({
 
 const portableTextComponents: PortableTextComponents = {
   types: {
-    customImage: ({ value }) => (
+    image: ({ value }) => (
       <Image
         src={urlForImage(value)}
         alt="Post"

@@ -1,6 +1,5 @@
-import type { ObjectDefinition, Rule } from "sanity";
 import { Icon } from "@iconify/react";
-
+import type { ObjectDefinition, Rule } from "sanity";
 
 export const overviewCard: ObjectDefinition = {
   name: "overviewCard",

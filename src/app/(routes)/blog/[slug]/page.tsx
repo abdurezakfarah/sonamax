@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import { jsonLd } from "@/lib/utilities/json-ld";
 import { client } from "@/sanity/lib/client";
 import { postPageQuery } from "@/sanity/lib/queries";
-import type { PostPageQueryResult } from "@/sanity/sanity.types";
+import type { PostPageQueryResult } from "@/types/sanity.types";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";

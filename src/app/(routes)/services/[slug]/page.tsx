@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utilities/cn";
 import { client } from "@/sanity/lib/client";
 import { servicePageQuery } from "@/sanity/lib/queries";
-import { ServicePageQueryResult } from "@/sanity/sanity.types";
+import { ServicePageQueryResult } from "@/types/sanity.types";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 

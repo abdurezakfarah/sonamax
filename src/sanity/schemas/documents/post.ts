@@ -71,7 +71,7 @@ export const post: SchemaTypeDefinition = {
     {
       name: "coverImage",
       title: "Cover Image",
-      type: "customImage",
+      type: "image",
       group: "media",
     },
     {

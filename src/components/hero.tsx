@@ -1,7 +1,7 @@
 import heroBannerImage from "@/assets/images/backgrounds/hero-banner.jpg";
 import { cn } from "@/lib/utilities/cn";
-import { PageQueryResult } from "@/sanity/sanity.types";
 import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";

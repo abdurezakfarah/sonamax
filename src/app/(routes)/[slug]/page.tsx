@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/page-header";
 import { siteConfig } from "@/config/site";
 import { client } from "@/sanity/lib/client";
 import { pageQuery } from "@/sanity/lib/queries";
-import type { PageQueryResult } from "@/sanity/sanity.types";
+import type { PageQueryResult } from "@/types/sanity.types";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 

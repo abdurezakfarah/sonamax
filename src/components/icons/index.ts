@@ -1,8 +1,10 @@
 import {
   ArrowRight,
   ArrowUpRight,
+  AtSign,
   BadgeAlert,
   Check,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleCheck,
@@ -10,12 +12,15 @@ import {
   Clock,
   Code,
   Cog,
+  ExternalLink,
+  File,
   FileDown,
   FolderCheck,
   Globe,
   Handshake,
   Highlighter,
   House,
+  Link,
   Mail,
   MapPin,
   Menu,
@@ -113,5 +118,10 @@ export const Icons = {
   flexNoWrap: FlexNoWrap,
   viewCozy: MdOutlineViewCozy,
   recordVoiceOver: MdOutlineRecordVoiceOver,
-  textField: MdOutlineTextFields
+  textField: MdOutlineTextFields,
+  link: Link, 
+  externalLink: ExternalLink,
+  atSign: AtSign,
+  file: File,
+  chevronDown: ChevronDown
 };

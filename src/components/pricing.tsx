@@ -1,18 +1,16 @@
 import shapeBgImage from "@/assets/images/backgrounds/shape.jpg";
 import { cn } from "@/lib/utilities/cn";
+import { kebabify } from "@/lib/utilities/kebabify";
+import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 import { CallToAction } from "./cta";
 import { Icons } from "./icons";
-import { PageQueryResult } from "@/sanity/sanity.types";
-import { ItemType } from "@/types";
-import { kebabify } from "@/lib/utilities/kebabify";
 
 type Content = NonNullable<PageQueryResult>["content"];
 
 type Pricing = Extract<ItemType<NonNullable<Content>>, { _type: "pricing" }>;
-
-
 
 export function Pricing({ _type, title, plans }: Pricing) {
   return (
@@ -29,9 +27,7 @@ export function Pricing({ _type, title, plans }: Pricing) {
   );
 }
 
-
-type Price = ItemType<Pricing["plans"]>
-
+type Price = ItemType<Pricing["plans"]>;
 
 function Price({
   title,

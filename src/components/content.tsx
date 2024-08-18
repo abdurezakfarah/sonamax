@@ -1,4 +1,4 @@
-import { PageQueryResult } from "@/sanity/sanity.types";
+import { PageQueryResult } from "@/types/sanity.types";
 import { About } from "./about";
 import { Blog } from "./blog";
 import { ChooseUs } from "./choose-us";

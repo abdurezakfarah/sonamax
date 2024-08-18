@@ -7,20 +7,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { kebabify } from "@/lib/utilities/kebabify";
-import { PageQueryResult } from "@/sanity/sanity.types";
 import { ItemType } from "@/types";
+import { PageQueryResult } from "@/types/sanity.types";
 import Image from "next/image";
 
 type Content = NonNullable<PageQueryResult>["content"];
 
-type Faq = Extract<
-  ItemType<NonNullable<Content>>,
-  { _type: "faq" }
->;
+type Faq = Extract<ItemType<NonNullable<Content>>, { _type: "faq" }>;
 
-export function FAQ({_type, title, faq }: Faq) {
+export function FAQ({ _type, title, faq }: Faq) {
   return (
-    <section id={kebabify(_type)} className="container relative flex items-stretch gap-10 py-10 lg:py-16 max-md:flex-col">
+    <section
+      id={kebabify(_type)}
+      className="container relative flex items-stretch gap-10 py-10 max-md:flex-col lg:py-16"
+    >
       <Image
         src={faqBgImage}
         alt="faq bg image"

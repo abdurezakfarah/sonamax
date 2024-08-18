@@ -43,7 +43,7 @@ export const project: SchemaTypeDefinition = {
     {
       name: "coverImage",
       title: "Cover Image",
-      type: "customImage",
+      type: "image",
       description:
         "Choose a compelling image that represents your content well and grabs attention.",
     },

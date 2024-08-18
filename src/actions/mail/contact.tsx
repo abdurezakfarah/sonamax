@@ -8,6 +8,7 @@ import {
   contactFormSchema,
   type ContactFormSchema,
 } from "@/lib/validations/contact-form";
+import env from "@/lib/validations/env";
 
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -15,10 +16,11 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: process.env.GMAIL!,
-    pass: process.env.GMAIL_APP_PASSWORD!,
-  },
+    user: env.GMAIL,
+    pass: env.GMAIL_APP_PASSWORD,
+  }, 
 });
+
 
 interface SendContactMailOptions {
   pathname: string;

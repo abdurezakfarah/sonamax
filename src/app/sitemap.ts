@@ -1,7 +1,7 @@
 import { mainNav, siteConfig } from "@/config/site";
 import { client } from "@/sanity/lib/client";
 import { sitemapQuery } from "@/sanity/lib/queries";
-import { SitemapQueryResult } from "@/sanity/sanity.types";
+import { SitemapQueryResult } from "@/types/sanity.types";
 import type { MetadataRoute } from "next";
 
 const mainNavigations: MetadataRoute.Sitemap = mainNav.map((nav) => ({

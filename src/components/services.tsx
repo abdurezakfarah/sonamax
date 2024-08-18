@@ -1,6 +1,6 @@
 import { kebabify } from "@/lib/utilities/kebabify";
-import type { PageQueryResult } from "@/sanity/sanity.types";
 import { ItemType } from "@/types";
+import type { PageQueryResult } from "@/types/sanity.types";
 import { Service } from "./service";
 
 type Content = NonNullable<PageQueryResult>["content"];
