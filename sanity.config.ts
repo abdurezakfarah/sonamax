@@ -17,7 +17,7 @@ import { schema, singletonTypes, unmutableActions } from "./src/sanity/schemas";
 export default defineConfig({
   basePath: "/admin",
   title: siteConfig.shortName,
-  theme
+  theme,
   projectId,
   dataset,
   schema,
