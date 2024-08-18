@@ -112,7 +112,6 @@ export const linkType = (opts?: LinkTypeOptions) => {
         description: "Link to call the given phone number.",
         validation: (rule) =>
           rule.custom((value, context) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             if (!value || (context.parent as any)?.type !== "phone") {
               return true;
             }

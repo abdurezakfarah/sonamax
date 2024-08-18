@@ -53,7 +53,7 @@ export function LinkInput(props: LinkInputProps) {
         )}
       </Flex>
       {restMembers.map((member) => (
-        <MemberField member={member} {...renderers} />
+        <MemberField key={member.key} member={member} {...renderers} />
       ))}
     </Stack>
   );
