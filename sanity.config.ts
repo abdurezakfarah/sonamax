@@ -4,7 +4,7 @@ import { Icons } from "@/components/icons";
 import { siteConfig } from "@/config/site";
 import { structure } from "@/sanity/structure";
 import { visionTool } from "@sanity/vision";
-// import { theme } from "https://themer.sanity.build/api/hues?primary=fa4c20";
+import { theme } from "https://themer.sanity.build/api/hues?primary=fa4c20";
 import { link } from "@/sanity/plugins/link";
 import { defineConfig } from "sanity";
 import { iconify } from "sanity-plugin-iconify";
@@ -17,7 +17,7 @@ import { schema, singletonTypes, unmutableActions } from "./src/sanity/schemas";
 export default defineConfig({
   basePath: "/admin",
   title: siteConfig.shortName,
-  // theme
+  theme
   projectId,
   dataset,
   schema,
